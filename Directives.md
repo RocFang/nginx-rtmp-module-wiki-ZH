@@ -37,8 +37,40 @@ respawn
 
 respawn_timeout
 
-
 ### Live
+
+live
+
+stream_buckets
+
 ### Record
+
+record
+
+record_path
+
+record_suffix
+
+record_unique
+
+record_max_size
+
+record_max_frames
+
+record_interval
+
+on_record_done
+
 ### Relay
+
+push
+
+pull
+
+relay_buffer
+
 ### Statistics
+
+rtmp_stat
+
+rtmp_stat_stylesheet
