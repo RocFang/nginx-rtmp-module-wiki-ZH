@@ -1,4 +1,3 @@
-## Directives
 ### Core
 ### Access
 ### Exec
@@ -6,5 +5,3 @@
 ### Record
 ### Relay
 ### Statistics
-
-## Examples
