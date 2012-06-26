@@ -19,6 +19,8 @@ profile. If not follow this rule the video will be jerky.
 
 ## Notifications & access control
 
+## Statistics
+
 ## Verifying session
 
 ## Utilizing multi-core CPUs
