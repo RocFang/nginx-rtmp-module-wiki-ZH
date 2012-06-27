@@ -1,6 +1,3 @@
-## NGINX-RTMP Module
-The module is 
-
 ## RTMP
 RTMP is a proprietary protocol developed by Adobe (Macromedia) for use
 in flash player. Until 2009 it had no public specification.
@@ -13,6 +10,17 @@ the spec is not full and misses significant issues concerning streaming H264.
 ## System requirements
 The module has been tested on Linux x86-family platforms. 
 However it should work on FreeBSD too.
+
+## Building NGINX with the module
+Buuilding is pretty obvious. Just cd to nginx source directory
+and configure nginx this way:
+
+`./configure --add-module=/path/to/nginx-rtmp-module`
+
+HLS support is provided by a separate module. To add HLS support
+use the following configure line:
+
+`./configure --add-module=/path/to/nginx-rtmp-module --add-module=/path/to/nginx-rtmp-module/hls`
 
 ## Configuration
 
