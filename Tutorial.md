@@ -12,7 +12,7 @@ The module has been tested on Linux x86-family platforms.
 However it should work on FreeBSD too.
 
 ## Building NGINX with the module
-Buuilding is pretty obvious. Just cd to nginx source directory
+Building is pretty obvious. Just cd to nginx source directory
 and configure nginx this way:
 
 `./configure --add-module=/path/to/nginx-rtmp-module`
