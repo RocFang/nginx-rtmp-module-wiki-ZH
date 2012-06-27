@@ -1,6 +1,17 @@
 ## RTMP
+RTMP is a proprietary protocol developed by Adobe for use
+in flash player. Until 2009 it had no public specification.
+A number of third-party RTMP-related products started in that period
+were based on the results of reverse engineering. In 2009 
+[RTMP specidication](http://www.adobe.com/devnet/rtmp.html) has been 
+published which made developing such applications easier. However
+the spec is not full and misses significant issues concerning streaming H264.
+
+In 2009 it's specification has been published.
 
 ## System requirements
+The module has been tested on Linux x86-family platforms. 
+However it should work on FreeBSD too.
 
 ## Configuration
 
@@ -21,7 +32,7 @@ no problems with the module are:
 * [Strobe Media Playback](http://www.osmf.org/strobe_mediaplayback.html)
 
 Old versions of JWPlayer (<=4.4) supported capturing video
-from webcam. You can see that version in test/ subdirectory.
+from webcam. You can find that version in test/ subdirectory.
 However audio is not captured by this version of player.
 Recent free versions of JWPlayer have no capture capability at
 all.
