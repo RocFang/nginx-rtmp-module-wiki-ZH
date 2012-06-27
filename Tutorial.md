@@ -27,6 +27,43 @@ Then `make` and `make install`.
 ## Configuration
 
 ## Simple live application
+Simple live application configuration:
+
+    application live {
+
+        live on;
+
+    }
+
+You can add access list control:
+
+    application live {
+
+        live on;
+
+        allow publish 127.0.0.1;
+        deny publish all;
+        allow play all;
+
+    }
+
+And you can add record support for live streams:
+
+    application live {
+
+        live on;
+
+        allow publish 127.0.0.1;
+        deny publish all;
+        allow play all;
+
+        record all;
+        record_path /path/to/record/dir;
+        record_max_size 100M;
+        record_unique off;
+
+    }
+
 
 ## HLS (HTTP Live Streaming)
 iPhone requires H264 stream to be encoded with baseline
