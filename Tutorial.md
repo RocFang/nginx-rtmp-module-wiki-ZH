@@ -1,13 +1,14 @@
+## NGINX-RTMP Module
+The module is 
+
 ## RTMP
-RTMP is a proprietary protocol developed by Adobe for use
+RTMP is a proprietary protocol developed by Adobe (Macromedia) for use
 in flash player. Until 2009 it had no public specification.
 A number of third-party RTMP-related products started in that period
 were based on the results of reverse engineering. In 2009 
-[RTMP specidication](http://www.adobe.com/devnet/rtmp.html) has been 
+[RTMP specification](http://www.adobe.com/devnet/rtmp.html) has been 
 published which made developing such applications easier. However
 the spec is not full and misses significant issues concerning streaming H264.
-
-In 2009 it's specification has been published.
 
 ## System requirements
 The module has been tested on Linux x86-family platforms. 
