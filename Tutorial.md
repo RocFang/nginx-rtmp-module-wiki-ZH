@@ -49,6 +49,15 @@ Recent free versions of JWPlayer have no capture capability at
 all.
 
 ## Transcoding streams
+You can use exec directive and ffmpeg for transcoding streams. For example:
+
+    application big {  
+        live on;  
+        exec /usr/bin/ffmpeg -re -i rtmp://localhost:1935/$app/$name -vcodec flv -acodec copy -s 32x32 -f flv rtmp://localhost:1935/small/${name};  
+    }  
+    application small {  
+        live on;  
+    }
 
 ## Distributed streaming
 
