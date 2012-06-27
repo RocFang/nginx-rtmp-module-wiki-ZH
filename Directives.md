@@ -23,6 +23,10 @@ max_queue
 
 max_message
 
+out_queue
+
+out_cork
+
 ### Access
 
 allow
