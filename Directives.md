@@ -137,7 +137,7 @@ can be used within command line:
 * $name, ${name} - stream name
 * $app, ${app} - application name
 
-The following ffmpeg call transcodes flash stream (H263/Nellymoser) to HLS-ready
+The following ffmpeg call transcodes incoming stream to HLS-ready
 stream (H264/AAC). FFmpeg should be compiled with libx264 & libfaac support
 for this example to work.
 
