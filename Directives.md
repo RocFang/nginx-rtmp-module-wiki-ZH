@@ -131,13 +131,13 @@ every stream published. When publishing stops the process
 is terminated. Full path to binary should be specified as the
 first argument. There are no assumptions about what this process should
 do. However this feature is useful with ffmpeg for stream
-transcoding. FFmpeg is supposed to connects to nginx-rtmp as a client 
+transcoding. FFmpeg is supposed to connect to nginx-rtmp as a client 
 and output transcoded stream back to nginx-rtmp as publisher. Substitutions
-can be used withing command line:
+can be used within command line:
 * $name, ${name} - stream name
 * $app, ${app} - application name
 
-The following ffmpeg call transcodes flash stream (H263-Nellymoser) to HLS-ready
+The following ffmpeg call transcodes flash stream (H263/Nellymoser) to HLS-ready
 stream (H264/AAC). FFmpeg should be compiled with libx264 & libfaac support
 for this example to work.
 
