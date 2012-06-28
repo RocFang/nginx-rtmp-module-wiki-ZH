@@ -272,10 +272,46 @@ relay_buffer
 ## Notify
 
 #### on_play
+Syntax: on_play url  
+Context: rtmp, server, application  
+
+Sets HTTP play callback. Each time a clients issues play command
+an HTTP request is issued asynchronously and command processing is
+suspended until it returns result code. If HTTP 2xx code is returned
+then RTMP session continues. Otherwise connection is dropped.
+
+HTTP request receives a number of arguments. POST method is used with
+application/x-www-form-urlencoded MIME type. The following arguments are
+passed to caller:
+* call=play
+* app - application name
+* flashVer - client flash version
+* swfUrl - client swf url
+* tcUrl - tcUrl
+* pageUrl - client page url
+* name - stream name
+
+In addition to the above mentioned items all arguments passed explicitly to 
+play command are also sent with the callback. For example if stream is
+accessed with the url `rtmp://localhost/app/movie?a=100&b=face&foo=bar` then
+`a`, `b` & `foo` are also sent with callback.
+
+    on_play http://example.com/my_callback;
 
 #### on_publish
+Syntax: on_publish url  
+Context: rtmp, server, application  
+
+The same as on_play above with the only difference that this directive sets
+callback on publish command.
 
 #### on_done
+Syntax: on_done url  
+Context: rtmp, server, application  
+
+Sets play/publish terminate callback. All the above applies here. However
+HTTP status code is not checked for this callback. This callback is repeated
+on client disconnect.
 
 ## Statistics
 
