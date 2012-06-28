@@ -1,9 +1,39 @@
 ### Core
-server
+#### rtmp
+syntax: rtmp { ... }  
+context: root  
+The block which holds all RTMP settings
 
-listen
+#### server
+syntax: server { ... }  
+context: rtmp  
+Declares RTMP server instance
+
+    rtmp {
+      server {
+      }
+    }
+
+#### listen
+syntax: listen (addr[:port]|port|unix:path) [bind]  [ipv6only=on|off] [so_keepalive=on|off|keepidle:keepintvl:keepcnt]  
+context: server  
+Adds listening socket to NGINX for accepting RTMP connections
+
+    server {
+        listen 1935;
+    }
 
 application
+syntax: application name { ... }  
+context: server  
+Creates RTMP application
+
+    server {
+        listen 1935;
+        application myapp {
+        }
+    }
+
 
 so_keepalive
 
