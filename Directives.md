@@ -137,7 +137,9 @@ specifies what exactly must be recorded:
 * audio - audio
 * video - video
 * keyframes - only key video frames
+
 There can be any compatible combination of keys in a single record directive.
+
 
     record all;
 
