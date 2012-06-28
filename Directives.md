@@ -118,13 +118,19 @@ very large which can be a problem for server stability. Default value
 ## Access
 
 #### allow
-Syntax: allow [play|publish] address|all  
+Syntax: allow [play|publish] address|subnet|all  
 Context: rtmp, server, application  
 
+Allow publishing/playing from addresses specified or from all addresses.
+Allow/deny directives are checked in order of appearance.
 
+    allow publish 127.0.0.1;
+    deny publish all;
+    allow play 192.168.0.0/24;
+    deny play all;
 
 #### deny
-Syntax: deny [play|publish] address|all  
+Syntax: deny [play|publish] address|subnet|all  
 Context: rtmp, server, application  
 
 See allow for description.
