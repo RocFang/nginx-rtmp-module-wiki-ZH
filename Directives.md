@@ -28,8 +28,8 @@ Adds listening socket to NGINX for accepting RTMP connections
 syntax: application name { ... }  
 context: server  
 
-Creates RTMP application. Unlike http locations application name
-should not be specified as a pattern but 
+Creates RTMP application. Unlike http location application name cannot
+be a pattern.
 
     server {
         listen 1935;
