@@ -127,19 +127,72 @@ stream_buckets
 
 ### Record
 
-record
+#### record
+syntax: record [off|all|audio|video|keyframes]*  
+context: rtmp, server, application  
+Toggles record mode. Stream can be recorded in flv file. This directive
+specifies what exactly must be recorded:
+* off - no recording at all
+* all - audio & video (everything)
+* audio - audio
+* video - video
+* keyframes - only key video frames
+There can be any compatible combination of keys in a single record directive.
 
-record_path
+    record all;
 
-record_suffix
+    record audio keyframes;
 
-record_unique
+#### record_path
+syntax: record_path path  
+context: rtmp, server, application  
+Specifies record path to put recorded flv files to.
 
-record_max_size
+    record_path /tmp/rec;
 
-record_max_frames
+#### record_suffix
+syntax: record_suffix value    
+context: rtmp, server, application  
+Sets record file suffix. Defaults to '.flv'.
 
-record_interval
+    record_suffix _recorded.flv;
+
+#### record_unique
+syntax: record_unique on|off  
+context: rtmp, server, application  
+If on appends current timestamp to recorded files. Otherwise the same file
+is rewritten each time new recording takes place. Default is off.
+
+    record_unique off;
+
+#### record_max_size
+syntax: record_max_size size  
+context: rtmp, server, application  
+
+Set maximum recorded file size.
+
+    record_max_size 128K;
+
+#### record_max_frames
+syntax: record_max_frames nframes  
+context: rtmp, server, application  
+
+Sets maximum number of video frames per recorded file.
+
+    record_max_frames 2;
+
+#### record_interval
+syntax: record_interval time  
+context: rtmp, server. application  
+Restart recording after this number of (milli)seconds has passed.
+Turned off by default. Zero means to delay between recordings. If
+record_unique is off then all record fragments are written to the
+same file. Otherwize timestamp is appended which makes the files
+differ (given record_interval bigger than 1 second).
+
+    record_interval 1s;
+
+    record_interval 15m;
 
 on_record_done
 
