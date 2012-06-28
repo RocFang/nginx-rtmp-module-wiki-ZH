@@ -114,11 +114,20 @@ very large which can be a problem for server stability. Default value
 
 #### out_cork
 
+
 ## Access
 
-allow
+#### allow
+Syntax: allow [play|publish] address|all
+Context: rtmp, server, application  
 
-deny
+
+
+#### deny
+Syntax: 
+Context: rtmp, server, application  
+
+See allow for description.
 
 ## Exec
 
