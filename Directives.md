@@ -278,11 +278,44 @@ differ (given record_interval is longer than 1 second).
 
 ## Relay
 
-push
+**extended syntax from relay-vars branch**
 
-pull
+#### pull
+Syntax: pull url [key=value]*  
+Context: application  
 
-relay_buffer
+Creates pull relay. Stream is pulled from remote machine
+and becomes available locally. It only happens when at least
+one player is playing the stream locally.
+
+Url syntax: `[rtmp://]host[:port][/app[/playpath]]`. If application
+is missing then local application name is used. If playpath is missing
+then current stream name is used instead.
+
+The following parameters are supported:
+* app - explicit application name
+* name - local stream name to bind relay to; if empty or non-specified then
+all local streams within application are pulled
+* tcUrl - auto-constructed if empty
+* pageUrl - page url to pretend
+* swfUrl - swf url to pretend
+* flashVer - flash version to pretend, default is 'LNX.11,1,102,55'
+* playPath - remote play path
+* live - toggles special behavior for live streaming, values: 0,1
+* start - start time in seconds
+* stop - stop time in seconds
+If a value for a parameter contains spaces then you should use quotes around
+**WHOLE** key=value pair like this : `'pageUrl=FAKE PAGE URL'`.
+
+    pull rtmp://cdn.excample.com/main/ch?id=12563 name=channel_a;
+    pull rtmp://cdn.excample.com/main/ch?id=12563 pageUrl=http://www.example.com/video.html swfUrl=http://www.example.com/player.swf live=1;
+
+#### push
+Syntax: push url [key=value]*  
+Context: application  
+
+Push has the same syntax as pull. The difference is in stream direction.
+Unlike pull push directive publishes stream to remote server.
 
 ## Notify
 
