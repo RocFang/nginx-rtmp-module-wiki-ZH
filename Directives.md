@@ -118,13 +118,13 @@ very large which can be a problem for server stability. Default value
 ## Access
 
 #### allow
-Syntax: allow [play|publish] address|all
+Syntax: allow [play|publish] address|all  
 Context: rtmp, server, application  
 
 
 
 #### deny
-Syntax: 
+Syntax: deny [play|publish] address|all  
 Context: rtmp, server, application  
 
 See allow for description.
