@@ -169,7 +169,7 @@ Context: rtmp, server, application
 Sets respawn timeout to wait before executing new child instance.
 Default is 5 seconds.
 
-    respan_timeout 10s;
+    respawn_timeout 10s;
 
 ## Live
 
