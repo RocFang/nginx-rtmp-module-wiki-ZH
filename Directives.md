@@ -163,8 +163,8 @@ is still on. Default is on;
     respawn off;
 
 #### respawn_timeout
-Syntax: respawn_timeout timeout
-Context: rtmp, server, application
+Syntax: respawn_timeout timeout  
+Context: rtmp, server, application  
 
 Sets respawn timeout to wait before executing new child instance.
 Default is 5 seconds.
