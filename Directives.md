@@ -143,7 +143,7 @@ for this example to work.
 
     application src {
         live on;
-        exec /usr/bin/ffmpeg -i rtmp://localhost/app/$name -vcodec libx264 -vprofile baseline -g 10 -s 300x200 -acodec libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/hls/$name;
+        exec /usr/bin/ffmpeg -i rtmp://localhost/src/$name -vcodec libx264 -vprofile baseline -g 10 -s 300x200 -acodec libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/hls/$name;
     }
 
     application hls {
@@ -279,12 +279,12 @@ relay_buffer
 
 ## Statistics
 
-rtmp_stat
+#### rtmp_stat
 
-rtmp_stat_stylesheet
+#### rtmp_stat_stylesheet
 
 ## HLS
 
-#### hlh
+#### hls
 #### hls_path
 #### hls_fragment
