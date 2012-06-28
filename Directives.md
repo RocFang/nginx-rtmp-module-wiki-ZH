@@ -328,14 +328,40 @@ Sets play/publish terminate callback. All the above applies here. However
 HTTP status code is not checked for this callback. This callback is repeated
 on client disconnect.
 
-## Statistics
-
-#### rtmp_stat
-
-#### rtmp_stat_stylesheet
-
 ## HLS
 
 #### hls
 #### hls_path
 #### hls_fragment
+
+## Statistics
+
+Statistics module is NGINX HTTP module unlike all other modules listed
+here. Hence statistics directives should be located within http{} block.
+
+#### rtmp_stat
+Syntax: rtmp_stat all  
+Context: http, server, location  
+
+Sets RTMP statistics handler to the current HTTP location. RTMP statistics is
+dynamic XML document. To watch this document in browser as XHTML page
+use rtmp_stat_stylesheet directive.
+
+    http {
+        server {
+            location /stat {
+                rtmp_stat all;
+                rtmp_stat_stylesheet stat.xsl;
+            }
+            location /stat.xsl {
+                root /path/to/stat/xsl/file;
+            }
+        }
+    }
+
+#### rtmp_stat_stylesheet
+Syntax: rtmp_stat_stylesheet path  
+Context: http, server, location  
+
+Adds XML stylesheet reference to statistics XML to it viewable
+in browser. See rtmp_stat description and example for more information.
