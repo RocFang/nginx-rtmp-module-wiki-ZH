@@ -1,11 +1,11 @@
 ## Core
 #### rtmp
-syntax: rtmp { ... }  
+syntax: `rtmp { ... }`  
 context: root  
 The block which holds all RTMP settings
 
 #### server
-syntax: server { ... }  
+syntax: `server { ... }`  
 context: rtmp  
 Declares RTMP server instance
 
@@ -15,7 +15,7 @@ Declares RTMP server instance
     }
 
 #### listen
-syntax: listen (addr[:port]|port|unix:path) [bind]  [ipv6only=on|off] [so_keepalive=on|off|keepidle:keepintvl:keepcnt]  
+syntax: `listen (addr[:port]|port|unix:path) [bind]  [ipv6only=on|off] [so_keepalive=on|off|keepidle:keepintvl:keepcnt]`  
 context: server  
 
 Adds listening socket to NGINX for accepting RTMP connections
@@ -25,7 +25,7 @@ Adds listening socket to NGINX for accepting RTMP connections
     }
 
 #### application
-syntax: application name { ... }  
+syntax: `application name { ... }`  
 context: server  
 
 Creates RTMP application. Unlike http location application name cannot
@@ -38,7 +38,7 @@ be a pattern.
     }
 
 #### timeout
-syntax: timeout value  
+syntax: `timeout value`  
 context: rtmp, server  
 
 Socket timeout. This value is primarily used for writing. Most of time RTMP 
@@ -49,7 +49,7 @@ keepalive or RTMP ping. Default is 1 minute.
     timeout 60s;
 
 #### ping
-syntax: ping value  
+syntax: `ping value`  
 context: rtmp, server  
 
 RTMP ping interval. Zero turns ping off. RTMP ping is a protocol feature for
@@ -62,13 +62,13 @@ value for ping is 0 (turned off). Default ping timeout is 30 seconds.
     ping_timeout 30s; # wait 30 sec for ping reply
 
 #### ping_timeout
-syntax: ping_timeout value  
+syntax: `ping_timeout value`  
 context: rtmp, server  
 
 See ping description above.
 
 #### max_streams
-syntax: max_streams value  
+syntax: `max_streams value`  
 context: rtmp, server  
 
 Sets maximum number of RTMP streams. Data streams are multiplexed into
@@ -78,7 +78,7 @@ audio, video etc. Default value is 32 which is usually ok for many cases.
     max_streams 32;
         
 #### ack_window
-syntax: ack_window value  
+syntax: `ack_window value`  
 context: rtmp, server  
 
 Sets RTMP acknowledge window size. It's the number of bytes received after
@@ -88,7 +88,7 @@ which peer should send acknowledge packet to remote side. Default value is
     ack_window 5000000;
 
 #### chunk_size
-syntax: chunk_size value  
+syntax: `chunk_size value`  
 context: rtmp, server  
 
 Maximum chunk size for stream multiplexing. Default is 4096. The bigger
@@ -99,7 +99,7 @@ this value the lower CPU overhead. This value cannot be less than 128.
 #### max_queue
 
 #### max_message
-syntax: max_queue value  
+syntax: `max_queue value`  
 context: rtmp, server  
 
 Maximum size of input data message. All input data comes split into
@@ -118,7 +118,7 @@ very large which can be a problem for server stability. Default value
 ## Access
 
 #### allow
-Syntax: allow [play|publish] address|subnet|all  
+Syntax: `allow [play|publish] address|subnet|all`  
 Context: rtmp, server, application  
 
 Allow publishing/playing from addresses specified or from all addresses.
@@ -130,7 +130,7 @@ Allow/deny directives are checked in order of appearance.
     deny play all;
 
 #### deny
-Syntax: deny [play|publish] address|subnet|all  
+Syntax: `deny [play|publish] address|subnet|all`  
 Context: rtmp, server, application  
 
 See allow for description.
@@ -138,7 +138,7 @@ See allow for description.
 ## Exec
 
 #### exec
-Syntax: exec command arg*  
+Syntax: `exec command arg*`  
 Context: rtmp, server, application
 
 Specifies external command with arguments to be executed on
@@ -169,7 +169,7 @@ for this example to work.
 
 
 #### respawn
-Syntax: respawn on|off  
+Syntax: `respawn on|off`  
 Context: rtmp, server, application  
 
 If turned on respawns child process when it's terminated while publishing
@@ -178,7 +178,7 @@ is still on. Default is on;
     respawn off;
 
 #### respawn_timeout
-Syntax: respawn_timeout timeout  
+Syntax: `respawn_timeout timeout`  
 Context: rtmp, server, application  
 
 Sets respawn timeout to wait before executing new child instance.
@@ -189,7 +189,7 @@ Default is 5 seconds.
 ## Live
 
 #### live
-Syntax: live on|off  
+Syntax: `live on|off`  
 Context: rtmp, server, application  
 
 Toggles live mode i.e. one-to-many broadcasting.
@@ -201,7 +201,7 @@ Toggles live mode i.e. one-to-many broadcasting.
 ## Record
 
 #### record
-syntax: record [off|all|audio|video|keyframes]*  
+syntax: `record [off|all|audio|video|keyframes]*`  
 context: rtmp, server, application  
 
 Toggles record mode. Stream can be recorded in flv file. This directive
@@ -220,7 +220,7 @@ There can be any compatible combination of keys in a single record directive.
     record audio keyframes;
 
 #### record_path
-syntax: record_path path  
+syntax: `record_path path`  
 context: rtmp, server, application  
 
 Specifies record path to put recorded flv files to.
@@ -228,7 +228,7 @@ Specifies record path to put recorded flv files to.
     record_path /tmp/rec;
 
 #### record_suffix
-syntax: record_suffix value    
+syntax: `record_suffix value`  
 context: rtmp, server, application  
 
 Sets record file suffix. Defaults to '.flv'.
@@ -236,7 +236,7 @@ Sets record file suffix. Defaults to '.flv'.
     record_suffix _recorded.flv;
 
 #### record_unique
-syntax: record_unique on|off  
+syntax: `record_unique on|off`  
 context: rtmp, server, application  
 
 If turned on appends current timestamp to recorded files. Otherwise the same file
@@ -245,7 +245,7 @@ is re-written each time new recording takes place. Default is off.
     record_unique off;
 
 #### record_max_size
-syntax: record_max_size size  
+syntax: `record_max_size size`  
 context: rtmp, server, application  
 
 Set maximum recorded file size.
@@ -253,7 +253,7 @@ Set maximum recorded file size.
     record_max_size 128K;
 
 #### record_max_frames
-syntax: record_max_frames nframes  
+syntax: `record_max_frames nframes`  
 context: rtmp, server, application  
 
 Sets maximum number of video frames per recorded file.
@@ -261,7 +261,7 @@ Sets maximum number of video frames per recorded file.
     record_max_frames 2;
 
 #### record_interval
-syntax: record_interval time  
+syntax: `record_interval time`  
 context: rtmp, server. application
   
 Restart recording after this number of (milli)seconds.
@@ -278,7 +278,7 @@ differ (given record_interval is longer than 1 second).
 
 ## Relay
 
-**extended syntax from relay-vars branch**
+**!!!extended syntax from relay-vars branch!!!**
 
 #### pull
 Syntax: `pull url [key=value]*`  
@@ -308,20 +308,20 @@ all local streams within application are pulled
 If a value for a parameter contains spaces then you should use quotes around
 the **WHOLE** key=value pair like this : `'pageUrl=FAKE PAGE URL'`.
 
-    pull rtmp://cdn.excample.com/main/ch?id=12563 name=channel_a;
-    pull rtmp://cdn.excample.com/main/ch?id=12563 pageUrl=http://www.example.com/video.html swfUrl=http://www.example.com/player.swf live=1;
+    pull rtmp://cdn.example.com/main/ch?id=12563 name=channel_a;
+
+    pull rtmp://cdn2.example.com/another/a?b=1&c=d pageUrl=http://www.example.com/video.html swfUrl=http://www.example.com/player.swf live=1;
 
 #### push
 Syntax: `push url [key=value]*`  
 Context: application  
 
-Push has the same syntax as pull. The difference is in stream direction.
-Unlike pull push directive publishes stream to remote server.
+Push has the same syntax as pull. Unlike pull push directive publishes stream to remote server.
 
 ## Notify
 
 #### on_play
-Syntax: on_play url  
+Syntax: `on_play url`  
 Context: rtmp, server, application  
 
 Sets HTTP play callback. Each time a clients issues play command
@@ -348,14 +348,14 @@ accessed with the url `rtmp://localhost/app/movie?a=100&b=face&foo=bar` then
     on_play http://example.com/my_callback;
 
 #### on_publish
-Syntax: on_publish url  
+Syntax: `on_publish url`  
 Context: rtmp, server, application  
 
 The same as on_play above with the only difference that this directive sets
 callback on publish command.
 
 #### on_done
-Syntax: on_done url  
+Syntax: `on_done url`  
 Context: rtmp, server, application  
 
 Sets play/publish terminate callback. All the above applies here. However
@@ -365,7 +365,7 @@ on client disconnect.
 ## HLS
 
 #### hls
-Syntax: hls on|off  
+Syntax: `hls on|off`  
 Context: rtmp, server, application  
 
 Toggles HLS on the application.
@@ -375,7 +375,7 @@ Toggles HLS on the application.
     hls_fragment 15s;
 
 #### hls_path
-Syntax: hls_path path  
+Syntax: `hls_path path`  
 Context: rtmp, server, application  
 
 Sets HLS playlist and fragment directory. This directory should
@@ -383,13 +383,13 @@ exist before NGINX starts. It should be located in memory (tmpfs)
 for best results.
 
 #### hls_fragment
-Syntax: hls_fragment time  
+Syntax: `hls_fragment time`  
 Context: rtmp, server, application  
 
 Sets HLS fragment length. Defaults to 5 seconds.
 
 #### hls_playist_length
-Syntax: hls_playlist_length time  
+Syntax: `hls_playlist_length time`  
 Context: rtmp, server, application  
 
 Sets HLS playlist length. Defaults to 30 seconds.
@@ -402,7 +402,7 @@ Statistics module is NGINX HTTP module unlike all other modules listed
 here. Hence statistics directives should be located within http{} block.
 
 #### rtmp_stat
-Syntax: rtmp_stat all  
+Syntax: `rtmp_stat all`  
 Context: http, server, location  
 
 Sets RTMP statistics handler to the current HTTP location. RTMP statistics is
@@ -422,7 +422,7 @@ use rtmp_stat_stylesheet directive.
     }
 
 #### rtmp_stat_stylesheet
-Syntax: rtmp_stat_stylesheet path  
+Syntax: `rtmp_stat_stylesheet path`  
 Context: http, server, location  
 
 Adds XML stylesheet reference to statistics XML to make it viewable
