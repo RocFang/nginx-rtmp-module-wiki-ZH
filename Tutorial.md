@@ -11,6 +11,9 @@ the spec is not full and misses significant issues concerning streaming H264.
 The module has been tested on Linux x86-family platforms. 
 However it should work on FreeBSD too.
 
+## Licence
+The module is distributed under BSD license.
+
 ## Building NGINX with the module
 Building is pretty obvious. Just cd to nginx source directory
 and configure nginx this way:
