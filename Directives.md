@@ -122,11 +122,54 @@ deny
 
 ## Exec
 
-exec
+#### exec
+Syntax: exec command arg*  
+Context: rtmp, server, application
 
-respawn
+Specifies external command with arguments to be executed on
+every stream published. When publishing stops the process
+is terminated. Full path to binary should be specified as the
+first argument. There are no assumptions about what this process should
+do. However this feature is useful with ffmpeg for stream
+transcoding. FFmpeg is supposed to connects to nginx-rtmp as a client 
+and output transcoded stream back to nginx-rtmp as publisher. Substitutions
+can be used withing command line:
+* $name, ${name} - stream name
+* $app, ${app} - application name
 
-respawn_timeout
+The following ffmpeg call transcodes flash stream (H263-Nellymoser) to HLS-ready
+stream (H264/AAC). FFmpeg should be compiled with libx264 & libfaac support
+for this example to work.
+
+    application src {
+        live on;
+        exec /usr/bin/ffmpeg -i rtmp://localhost/app/$name -vcodec libx264 -vprofile baseline -g 10 -s 300x200 -acodec libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/hls/$name;
+    }
+
+    application hls {
+        hls on;
+        hls_path /tmp/hls;
+        hls_fragment 15s;
+    }
+
+
+#### respawn
+Syntax: respawn on|off  
+Context: rtmp, server, application  
+
+If turned on respawns child process when it's terminated while publishing
+is still on. Default is on;
+
+    respawn off;
+
+#### respawn_timeout
+Syntax: respawn_timeout timeout
+Context: rtmp, server, application
+
+Sets respawn timeout to wait before executing new child instance.
+Default is 5 seconds.
+
+    respan_timeout 10s;
 
 ## Live
 
@@ -239,3 +282,9 @@ relay_buffer
 rtmp_stat
 
 rtmp_stat_stylesheet
+
+## HLS
+
+#### hlh
+#### hls_path
+#### hls_fragment
