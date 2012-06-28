@@ -116,23 +116,9 @@ very large which can be a problem for server stability. Default value
 
 ## Access
 
-#### allow
-Syntax: allow event subject  
-Context: rtmp, server, application  
+allow
 
-Set allow rules for the event.
-
-    allow publish 127.0.0.1;
-    allow play all;
-
-#### deny
-Syntax: deny event subject  
-Context: rtmp, server, application  
-
-Set deny rules for the event.
-
-    deny publish all;
-    deny play 127.0.0.1;
+deny
 
 ## Exec
 
