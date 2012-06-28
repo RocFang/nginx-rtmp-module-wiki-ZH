@@ -360,7 +360,7 @@ Context: rtmp, server, application
 
 Sets HLS playlist length. Defaults to 30 seconds.
 
-  hls_playlist_length 10m;
+    hls_playlist_length 10m;
 
 ## Statistics
 
