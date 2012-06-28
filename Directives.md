@@ -1,4 +1,4 @@
-### Core
+## Core
 #### rtmp
 syntax: rtmp { ... }  
 context: root  
@@ -17,6 +17,7 @@ Declares RTMP server instance
 #### listen
 syntax: listen (addr[:port]|port|unix:path) [bind]  [ipv6only=on|off] [so_keepalive=on|off|keepidle:keepintvl:keepcnt]  
 context: server  
+
 Adds listening socket to NGINX for accepting RTMP connections
 
     server {
@@ -26,6 +27,7 @@ Adds listening socket to NGINX for accepting RTMP connections
 #### application
 syntax: application name { ... }  
 context: server  
+
 Creates RTMP application. Unlike http locations application name
 should not be specified as a pattern but 
 
@@ -38,6 +40,7 @@ should not be specified as a pattern but
 #### timeout
 syntax: timeout value  
 context: rtmp, server  
+
 Socket timeout. This value is primarily used for writing. Most of time RTMP 
 module does not expect any activity on all sockets except for publisher socket. 
 If you want broken socket to get quickly disconnected use active tools like 
@@ -48,6 +51,7 @@ keepalive or RTMP ping. Default is 1 minute.
 #### ping
 syntax: ping value  
 context: rtmp, server  
+
 RTMP ping interval. Zero turns ping off. RTMP ping is a protocol feature for
 active connection check. A special packet is sent to remote peer and a reply
 is expected within a timeout specified with ping_timeout directive. If ping
@@ -60,11 +64,13 @@ value for ping is 0 (turned off). Default ping timeout is 30 seconds.
 #### ping_timeout
 syntax: ping_timeout value  
 context: rtmp, server  
+
 See ping description above.
 
 #### max_streams
 syntax: max_streams value  
 context: rtmp, server  
+
 Sets maximum number of RTMP streams. Data streams are multiplexed into
 a single data stream. Different channels are used for sending commands,
 audio, video etc. Default value is 32 which is usually ok for many cases.
@@ -74,6 +80,7 @@ audio, video etc. Default value is 32 which is usually ok for many cases.
 #### ack_window
 syntax: ack_window value  
 context: rtmp, server  
+
 Sets RTMP acknowledge window size. It's the number of bytes received after
 which peer should send acknowledge packet to remote side. Default value is
 5000000.
@@ -83,6 +90,7 @@ which peer should send acknowledge packet to remote side. Default value is
 #### chunk_size
 syntax: chunk_size value  
 context: rtmp, server  
+
 Maximum chunk size for stream multiplexing. Default is 4096. The bigger
 this value the lower CPU overhead. This value cannot be less than 128.
 
@@ -93,6 +101,7 @@ this value the lower CPU overhead. This value cannot be less than 128.
 #### max_message
 syntax: max_queue value  
 context: rtmp, server  
+
 Maximum size of input data message. All input data comes split into
 messages (and further in chunks). A partial message is kept in memory while
 waiting for it to complete. In theory incoming message can be
@@ -105,13 +114,13 @@ very large which can be a problem for server stability. Default value
 
 #### out_cork
 
-### Access
+## Access
 
 allow
 
 deny
 
-### Exec
+## Exec
 
 exec
 
@@ -119,19 +128,26 @@ respawn
 
 respawn_timeout
 
-### Live
+## Live
 
-live
+#### live
+Syntax: live on|off  
+Context: rtmp, server, application  
 
-stream_buckets
+Toggles live mode i.e. one-to-many broadcasting.
 
-### Record
+    live on;
+
+#### stream_buckets
+
+## Record
 
 #### record
 syntax: record [off|all|audio|video|keyframes]*  
 context: rtmp, server, application  
+
 Toggles record mode. Stream can be recorded in flv file. This directive
-specifies what exactly must be recorded:
+specifies what exactly should be recorded:
 * off - no recording at all
 * all - audio & video (everything)
 * audio - audio
@@ -148,6 +164,7 @@ There can be any compatible combination of keys in a single record directive.
 #### record_path
 syntax: record_path path  
 context: rtmp, server, application  
+
 Specifies record path to put recorded flv files to.
 
     record_path /tmp/rec;
@@ -155,6 +172,7 @@ Specifies record path to put recorded flv files to.
 #### record_suffix
 syntax: record_suffix value    
 context: rtmp, server, application  
+
 Sets record file suffix. Defaults to '.flv'.
 
     record_suffix _recorded.flv;
@@ -162,8 +180,9 @@ Sets record file suffix. Defaults to '.flv'.
 #### record_unique
 syntax: record_unique on|off  
 context: rtmp, server, application  
-If on appends current timestamp to recorded files. Otherwise the same file
-is rewritten each time new recording takes place. Default is off.
+
+If turned on appends current timestamp to recorded files. Otherwise the same file
+is re-written each time new recording takes place. Default is off.
 
     record_unique off;
 
@@ -185,20 +204,21 @@ Sets maximum number of video frames per recorded file.
 
 #### record_interval
 syntax: record_interval time  
-context: rtmp, server. application  
-Restart recording after this number of (milli)seconds has passed.
-Turned off by default. Zero means to delay between recordings. If
+context: rtmp, server. application
+  
+Restart recording after this number of (milli)seconds.
+Off by default. Zero means to delay between recordings. If
 record_unique is off then all record fragments are written to the
-same file. Otherwize timestamp is appended which makes the files
-differ (given record_interval bigger than 1 second).
+same file. Otherwise timestamp is appended which makes files
+differ (given record_interval is longer than 1 second).
 
     record_interval 1s;
 
     record_interval 15m;
 
-on_record_done
+#### on_record_done
 
-### Relay
+## Relay
 
 push
 
@@ -206,7 +226,7 @@ pull
 
 relay_buffer
 
-### Statistics
+## Statistics
 
 rtmp_stat
 
