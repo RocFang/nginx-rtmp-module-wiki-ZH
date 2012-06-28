@@ -281,7 +281,7 @@ differ (given record_interval is longer than 1 second).
 **extended syntax from relay-vars branch**
 
 #### pull
-Syntax: pull url [key=value]*  
+Syntax: `pull url [key=value]*`  
 Context: application  
 
 Creates pull relay. Stream is pulled from remote machine
@@ -304,14 +304,15 @@ all local streams within application are pulled
 * live - toggles special behavior for live streaming, values: 0,1
 * start - start time in seconds
 * stop - stop time in seconds
+
 If a value for a parameter contains spaces then you should use quotes around
-**WHOLE** key=value pair like this : `'pageUrl=FAKE PAGE URL'`.
+the **WHOLE** key=value pair like this : `'pageUrl=FAKE PAGE URL'`.
 
     pull rtmp://cdn.excample.com/main/ch?id=12563 name=channel_a;
     pull rtmp://cdn.excample.com/main/ch?id=12563 pageUrl=http://www.example.com/video.html swfUrl=http://www.example.com/player.swf live=1;
 
 #### push
-Syntax: push url [key=value]*  
+Syntax: `push url [key=value]*`  
 Context: application  
 
 Push has the same syntax as pull. The difference is in stream direction.
