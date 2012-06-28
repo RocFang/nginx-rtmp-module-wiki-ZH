@@ -55,7 +55,7 @@ reply is not received within this time then connection is closed. Default
 value for ping is 0 (turned off). Default ping timeout is 30 seconds.
 
     ping 1m;          # ping every 1 minute
-    ping_timeout 30s; # wait 15 sec for ping reply
+    ping_timeout 30s; # wait 30 sec for ping reply
 
 #### ping_timeout
 syntax: ping_timeout value  
