@@ -207,7 +207,7 @@ syntax: record_interval time
 context: rtmp, server. application
   
 Restart recording after this number of (milli)seconds.
-Off by default. Zero means to delay between recordings. If
+Off by default. Zero means no delay between recordings. If
 record_unique is off then all record fragments are written to the
 same file. Otherwise timestamp is appended which makes files
 differ (given record_interval is longer than 1 second).
