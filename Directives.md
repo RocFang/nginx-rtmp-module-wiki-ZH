@@ -331,8 +331,36 @@ on client disconnect.
 ## HLS
 
 #### hls
+Syntax: hls on|off  
+Context: rtmp, server, application  
+
+Toggles HLS on the application.
+
+    hls on;
+    hls_path /tmp/hls;
+    hls_fragment 15s;
+
 #### hls_path
+Syntax: hls_path path  
+Context: rtmp, server, application  
+
+Sets HLS playlist and fragment directory. This directory should
+exist before NGINX starts. It should be located in memory (tmpfs)
+for best results.
+
 #### hls_fragment
+Syntax: hls_fragment time  
+Context: rtmp, server, application  
+
+Sets HLS fragment length. Defaults to 5 seconds.
+
+#### hls_playist_length
+Syntax: hls_playlist_length time  
+Context: rtmp, server, application  
+
+Sets HLS playlist length. Defaults to 30 seconds.
+
+  hls_playlist_length 10m;
 
 ## Statistics
 
@@ -363,5 +391,5 @@ use rtmp_stat_stylesheet directive.
 Syntax: rtmp_stat_stylesheet path  
 Context: http, server, location  
 
-Adds XML stylesheet reference to statistics XML to it viewable
+Adds XML stylesheet reference to statistics XML to make it viewable
 in browser. See rtmp_stat description and example for more information.
