@@ -181,7 +181,7 @@ is still on. Default is on;
 Syntax: `respawn_timeout timeout`  
 Context: rtmp, server, application  
 
-Sets respawn timeout to wait before executing new child instance.
+Sets respawn timeout to wait before starting new child instance.
 Default is 5 seconds.
 
     respawn_timeout 10s;
