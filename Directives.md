@@ -196,6 +196,14 @@ Toggles live mode i.e. one-to-many broadcasting.
 
     live on;
 
+#### meta
+Syntax: `meta on|off`  
+Context: rtmp, server, application  
+
+Toggles sending metadata to clients. Defaults to on.
+
+    meta off;
+
 #### stream_buckets
 
 ## Record
