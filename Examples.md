@@ -27,7 +27,7 @@
             listen 1935;
             application tv {
                 live on;
-                pull rtmp://cdn.example.com:443/programs/main pageUrl=http://www.example.com/index.html;
+                pull rtmp://cdn.example.com:443/programs/main pageUrl=http://www.example.com/index.html name=maintv;
             }
         }
     }
