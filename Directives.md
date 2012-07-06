@@ -270,7 +270,7 @@ Sets maximum number of video frames per recorded file.
 
 #### record_interval
 syntax: `record_interval time`  
-context: rtmp, server. application
+context: rtmp, server, application
   
 Restart recording after this number of (milli)seconds.
 Off by default. Zero means no delay between recordings. If
@@ -284,9 +284,27 @@ differ (given record_interval is longer than 1 second).
 
 #### on_record_done
 
-## Relay
+## Video on demand
 
-**!!!extended syntax from relay-vars branch!!!**
+#### play
+Syntax: `play dir`  
+Context: rtmp, server, application  
+
+PLay FLVs from specified directory. Indexed
+FLVs are played with random seek capability.
+Unindexed FLVs are played with seek/pause disabled
+(restart-only mode). Use FLV indexer (for example, yamdi)
+for indexing.
+
+    application vod {
+        play /var/flvs;
+    }
+
+Playing /var/flvs/dir/file.flv:
+
+    ffplay rtmp://localhost/vod/dir/file.flv
+
+## Relay
 
 #### pull
 Syntax: `pull url [key=value]*`  
