@@ -32,6 +32,31 @@
         }
     }
 
+### Re-translate remote stream to HLS
+
+    rtmp {
+        server {
+            listen 1935;
+            application tv {
+                live on;
+
+                hls on;
+                hls_path /tmp/tv2;
+                hls_fragment 15s;
+
+                pull rtmp://tv2.example.com:443/root/new name=tv2;
+            }
+        }
+    }
+
+    http {
+        server {
+            listen 80;
+            location /tv2 {
+                alias /tmp/tv2;
+            }
+        }
+    }
 ### Stream your X screen through RTMP
 
     ffmpeg -f x11grab -follow_mouse centered -r 25 -s cif -i :0.0 -f flv rtmp://localhost/myapp/screen
