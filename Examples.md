@@ -9,7 +9,7 @@
         }
     }
 
-### Simple live
+### Simple live broadcast service
 
     rtmp {
         server {
