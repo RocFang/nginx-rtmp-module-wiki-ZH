@@ -32,7 +32,7 @@
         }
     }
 
-### Re-translate remote stream to HLS
+### Re-translate remote stream with HLS support
 
     rtmp {
         server {
