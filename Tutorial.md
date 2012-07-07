@@ -99,6 +99,8 @@ You can use exec directive and ffmpeg for transcoding streams. For example:
         live on;  
     }
 
+## Video on demand
+
 ## Distributed streaming
 
 ## Notifications & access control
