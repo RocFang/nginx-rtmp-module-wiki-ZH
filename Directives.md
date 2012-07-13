@@ -359,6 +359,7 @@ HTTP request receives a number of arguments. POST method is used with
 application/x-www-form-urlencoded MIME type. The following arguments are
 passed to caller:
 * call=play
+* addr - client IP address
 * app - application name
 * flashVer - client flash version
 * swfUrl - client swf url
