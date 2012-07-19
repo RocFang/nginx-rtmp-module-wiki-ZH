@@ -344,6 +344,14 @@ Context: application
 
 Push has the same syntax as pull. Unlike pull push directive publishes stream to remote server.
 
+#### push_reconnect
+Syntax: `push_reconnect time`  
+Context: rtmp, server, application  
+
+Timeout to wait before reconnecting pushed connection after disconnect. Default is 3 seconds.
+
+    push_reconnect 1s;
+
 ## Notify
 
 #### on_play
