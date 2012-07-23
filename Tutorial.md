@@ -69,8 +69,7 @@ And you can add record support for live streams:
 
 
 ## HLS (HTTP Live Streaming)
-iPhone requires H264 stream to be encoded with baseline
-profile. If not follow this rule the video will be jerky.
+
 
 ## Choosing flash player
 To watch RTMP stream in browser one should either develop
