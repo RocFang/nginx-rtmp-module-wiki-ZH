@@ -472,12 +472,12 @@ to remaining nginx workers.
 Syntax: `rtmp_sauto_push on|off`  
 Context: root  
 
+Toggles auto-push (multi-worker live streaming) mode.
+Default is off.
+
 #### rtmp_auto_push_reconnect
 Syntax: `rtmp_auto_push_reconnect timeout`  
 Context: root  
-
-Toggles auto-push (multi-worker live streaming) mode.
-Default is off.
 
 Sets auto-push reconnect timeout when worker is killed.
 Default is 100 milliseconds.
