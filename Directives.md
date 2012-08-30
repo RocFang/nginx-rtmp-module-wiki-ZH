@@ -462,3 +462,42 @@ Context: http, server, location
 
 Adds XML stylesheet reference to statistics XML to make it viewable
 in browser. See rtmp_stat description and example for more information.
+
+## Multi-worker live streaming
+
+Multi-worker live streaming is implemented through pushing stream
+to remaining nginx workers.
+
+#### rtmp_auto_push
+Syntax: `rtmp_sauto_push on|off`  
+Context: root  
+
+#### rtmp_auto_push_reconnect
+Syntax: `rtmp_auto_push_reconnect timeout`  
+Context: root  
+
+Toggles auto-push (multi-worker live streaming) mode.
+Default is off.
+
+Sets auto-push reconnect timeout when worker is killed.
+Default is 100 milliseconds.
+
+#### rtmp_socket_dir
+Syntax: `rtmp_socket_dir dir`  
+Context: root  
+
+Sets directory for UNIX domains sockets used for stream pushing.
+Default is `/tmp`.
+
+    rtmp_auto_push on;
+    rtmp_auto_push_reconnect 1s;
+    rtmp_socket_dir /var/sock;
+
+    rtmp {
+        server {
+            listen 1935;
+            application myapp {
+                live on;
+            }
+        }
+    }
