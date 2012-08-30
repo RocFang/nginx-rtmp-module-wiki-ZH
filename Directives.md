@@ -469,7 +469,7 @@ Multi-worker live streaming is implemented through pushing stream
 to remaining nginx workers.
 
 #### rtmp_auto_push
-Syntax: `rtmp_sauto_push on|off`  
+Syntax: `rtmp_auto_push on|off`  
 Context: root  
 
 Toggles auto-push (multi-worker live streaming) mode.
