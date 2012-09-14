@@ -205,6 +205,20 @@ Context: rtmp, server, application
 Specifies external command with arguments to be executed on
 play event. Return code is not analyzed.
 
+#### exec_play_done
+Syntax: `exec_play_done command arg*`  
+Context: rtmp, server, application
+
+Specifies external command with arguments to be executed on
+play_done event. Return code is not analyzed.
+
+#### exec_publish_done
+Syntax: `exec_publish_done command arg*`  
+Context: rtmp, server, application
+
+Specifies external command with arguments to be executed on
+publish_done event. Return code is not analyzed.
+
 #### exec_record_done
 Syntax: `exec_record_done command arg*`  
 Context: rtmp, server, application, recorder
