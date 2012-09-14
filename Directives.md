@@ -284,6 +284,34 @@ differ (given record_interval is longer than 1 second).
 
 #### on_record_done
 
+#### recorder
+syntax: `recorder {...}`  
+context: application
+  
+Create recorder block. Multiple recorders can be created withing
+single application. All the above mentioned recording-related 
+directives can be specified in `recorder{}` block. All settings
+are inherited from higher levels.
+
+    application {
+        live on;
+
+        # default recorder
+        record all;
+        record_path /var/rec;
+
+        recorder audio {
+            record audio;
+            record_suffix .audio.flv;
+        }
+
+        recorder chunked {
+            record all;
+            record_interval 15s;
+            record_path /var/rec/chunked;
+        }
+    }
+
 ## Video on demand
 
 #### play
