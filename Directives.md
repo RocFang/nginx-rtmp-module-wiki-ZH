@@ -214,7 +214,7 @@ recording is finished. Additional substitutions `path` and `filename`
 are supported for this command.
 
     # track client info
-    exec_play bash -c "echo $addr $pageurl >> /tmp/client-ips";
+    exec_play bash -c "echo $addr $pageurl >> /tmp/clients";
     exec_publish bash -c "echo $addr $flashver >> /tmp/publishers";
 
     # convert recorded file to mp4 format
