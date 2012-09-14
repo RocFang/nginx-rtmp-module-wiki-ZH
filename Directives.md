@@ -394,8 +394,19 @@ Syntax: `on_done url`
 Context: rtmp, server, application  
 
 Sets play/publish terminate callback. All the above applies here. However
-HTTP status code is not checked for this callback. This callback is repeated
-on client disconnect.
+HTTP status code is not checked for this callback.
+
+#### on_play_done
+Syntax: `on_publish_done url`  
+Context: rtmp, server, application  
+
+Same behavior as `on_done` but only for play end event.
+
+#### on_publish_done
+Syntax: `on_publish_done url`  
+Context: rtmp, server, application  
+
+Same behavior as `on_done` but only for publish end event.
 
 ## HLS
 
