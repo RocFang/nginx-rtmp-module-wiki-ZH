@@ -148,9 +148,14 @@ first argument. There are no assumptions about what this process should
 do. However this feature is useful with ffmpeg for stream
 transcoding. FFmpeg is supposed to connect to nginx-rtmp as a client 
 and output transcoded stream back to nginx-rtmp as publisher. Substitutions
-can be used within command line:
-* $name, ${name} - stream name
-* $app, ${app} - application name
+of form $var/${var} can be used within command line:
+* $name - stream name
+* $app - application name
+* $addr - client address
+* $flashver - client flash version
+* $swfurl - client swf url
+* $tcfurl - client tc url
+* $pageurl - client page url
 
 The following ffmpeg call transcodes incoming stream to HLS-ready
 stream (H264/AAC). FFmpeg should be compiled with libx264 & libfaac support
@@ -185,6 +190,35 @@ Sets respawn timeout to wait before starting new child instance.
 Default is 5 seconds.
 
     respawn_timeout 10s;
+
+#### exec_publish
+Syntax: `exec_publish command arg*`  
+Context: rtmp, server, application
+
+Specifies external command with arguments to be executed on
+publish event. Return code is not analyzed.
+
+#### exec_play
+Syntax: `exec_play command arg*`  
+Context: rtmp, server, application
+
+Specifies external command with arguments to be executed on
+play event. Return code is not analyzed.
+
+#### exec_record_done
+Syntax: `exec_record_done command arg*`  
+Context: rtmp, server, application, recorder
+
+Specifies external command with arguments to be executed when
+recording is finished. Additional substitutions `path` and `filename`
+are supported for this command.
+
+    # track client info
+    exec_play bash -c "echo $addr $pageurl >> /tmp/client-ips";
+    exec_publish bash -c "echo $addr $flashver >> /tmp/publishers";
+
+    # convert recorded file to mp4 format
+    exec_record_done ffmpeg -y -i $path -acodec libmp3lame -ar 44100 -ac 1 -vcodec libx264 /var/rec/$filename.mp4;
 
 ## Live
 
