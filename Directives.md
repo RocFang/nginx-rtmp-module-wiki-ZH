@@ -436,7 +436,7 @@ Same behavior as `on_done` but only for publish end event.
 
 #### on_record_done
 syntax: `on_record_done url`  
-context: rtmp, server, application
+context: rtmp, server, application, recorder  
   
 Set record_done callback. In addition to common HTTP callback
 variables it receives recorded file path.
