@@ -282,10 +282,8 @@ differ (given record_interval is longer than 1 second).
 
     record_interval 15m;
 
-#### on_record_done
-
 #### recorder
-syntax: `recorder {...}`  
+syntax: `recorder name {...}`  
 context: application
   
 Create recorder block. Multiple recorders can be created withing
@@ -435,6 +433,15 @@ Syntax: `on_publish_done url`
 Context: rtmp, server, application  
 
 Same behavior as `on_done` but only for publish end event.
+
+#### on_record_done
+syntax: `on_record_done url`  
+context: rtmp, server, application
+  
+Set record_done callback. In addition to common HTTP callback
+variables it receives recorded file path.
+
+    on_record_done http://example.com/recorded;
 
 ## HLS
 
