@@ -224,15 +224,15 @@ Syntax: `exec_record_done command arg*`
 Context: rtmp, server, application, recorder
 
 Specifies external command with arguments to be executed when
-recording is finished. Additional substitutions `path` and `filename`
-are supported for this command.
+recording is finished. Additional variable `path` is supported 
+for this command.
 
     # track client info
     exec_play bash -c "echo $addr $pageurl >> /tmp/clients";
     exec_publish bash -c "echo $addr $flashver >> /tmp/publishers";
 
     # convert recorded file to mp4 format
-    exec_record_done ffmpeg -y -i $path -acodec libmp3lame -ar 44100 -ac 1 -vcodec libx264 /var/rec/$filename.mp4;
+    exec_record_done ffmpeg -y -i $path -acodec libmp3lame -ar 44100 -ac 1 -vcodec libx264 $path.mp4;
 
 ## Live
 
