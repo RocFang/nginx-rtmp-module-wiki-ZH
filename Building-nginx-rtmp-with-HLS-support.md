@@ -3,7 +3,7 @@ Build & install latest ffmpeg into /opt/ffmpeg
     cd /usr/build
     git clone git://source.ffmpeg.org/ffmpeg.git ffmpeg
     cd ffmpeg
-    ./configure --prefix=/opt/ffmpeg --disable-yasm --enable-shared --disable-static
+    ./configure --prefix=/opt/ffmpeg --disable-yasm --enable-shared
     make
     make install
 
