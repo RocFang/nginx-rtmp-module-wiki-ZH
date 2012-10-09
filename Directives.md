@@ -257,7 +257,7 @@ Toggles sending metadata to clients. Defaults to on.
 ## Record
 
 #### record
-syntax: `record [off|all|audio|video|keyframes]*`  
+syntax: `record [off|all|audio|video|keyframes|manual]*`  
 context: rtmp, server, application  
 
 Toggles record mode. Stream can be recorded in flv file. This directive
