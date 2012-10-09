@@ -267,6 +267,7 @@ specifies what exactly should be recorded:
 * audio - audio
 * video - video
 * keyframes - only key video frames
+* manual - never start recorder automatically, use control interface to start/stop
 
 There can be any compatible combination of keys in a single record directive.
 
@@ -592,6 +593,24 @@ Default is `/tmp`.
             listen 1935;
             application myapp {
                 live on;
+            }
+        }
+    }
+
+## Control
+
+Control module is NGINX HTTP module and should be located within http{} block.
+
+#### rtmp_control
+Syntax: `rtmp_control all`  
+Context: http, server, location  
+
+Sets RTMP control handler to the current HTTP location. 
+
+    http {
+        server {
+            location /control {
+                rtmp_control all;
             }
         }
     }
