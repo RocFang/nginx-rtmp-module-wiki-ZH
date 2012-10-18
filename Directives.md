@@ -369,6 +369,21 @@ are inherited from higher levels.
         }
     }
 
+#### record_notify
+syntax: `record_notify on|off`  
+context: rtmp, server, application, recorder  
+  
+Toggles sending NetStream.Record.Start and NetStream.Record.Stop
+status messages (onStatus) to publisher when specific recorder 
+starts or stops recording file. Status description field holds
+recorder name (empty for default recorder). Off by default.
+
+    recorder myrec {
+        record all manual;
+        record_path /var/rec;
+        record_notify on;
+    }
+
 ## Video on demand
 
 #### play
