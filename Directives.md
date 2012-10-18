@@ -176,7 +176,7 @@ for this example to work.
 Syntax: `exec_kill_signal signal`  
 Context: rtmp, server, application  
 
-Sets termination signal for terminated processed. Defalt is kill (SIGKILL).
+Sets process termination signal. Defalt is kill (SIGKILL).
 You can specify numeric or symbolic name (for POSIX.1-1990 signals).
 
     exec_kill_signal term;
