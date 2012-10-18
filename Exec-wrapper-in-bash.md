@@ -1,4 +1,4 @@
-You can write exec wrapper in any language. However you should pay attention to termination process. When publisher closes the stream all executed processed get terminated. If you specify wrapper in ```exec``` directive instead of real ffmpeg then you might end up with your ffmpeg still alive and zombie until it times out reading input data.
+You can write exec wrapper in any language. However you should pay attention to termination process. When publisher closes the stream all executed processed get terminated. If you specify wrapper in ```exec``` directive instead of real ffmpeg then you might end up with your ffmpeg still alive and orphaned until it times out reading input data.
 
 The solution is using signal traps. Here's an example of such wrapper in bash.
 
