@@ -172,6 +172,16 @@ for this example to work.
         hls_fragment 15s;
     }
 
+#### exec_kill_signal
+Syntax: `exec_kill_signal signal`  
+Context: rtmp, server, application  
+
+Sets termination signal for terminated processed. Defalt is kill (SIGKILL).
+You can specify numeric or symbolic name (for POSIX.1-1990 signals).
+
+    exec_kill_signal term;
+    exec_kill_signal usr1;
+    exec_kill_signal 3;
 
 #### respawn
 Syntax: `respawn on|off`  
