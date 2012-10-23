@@ -639,3 +639,5 @@ Sets RTMP control handler to the current HTTP location.
             }
         }
     }
+
+[More details about control module](Control-module)
