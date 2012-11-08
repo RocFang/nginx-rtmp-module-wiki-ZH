@@ -517,6 +517,27 @@ variables it receives recorded file path.
 
     on_record_done http://example.com/recorded;
 
+### notify_method
+syntax: `notify_method get|post`  
+context: rtmp, server, application, recorder  
+
+Sets HTTP method for notifications. Default is POST with 
+`application/x-www-form-urlencoded` content type. In certain cases
+GET is preferable, for example if you plan to handle the call
+in `http{}` section of nginx. In this case you can use `arg_*` variables
+to access arguments.
+
+    notify_method get;
+
+With GET method handling notifications in `http{}` section can be done this way
+
+    location /on_play {
+        if ($arg_pageUrl ~* localhost) {
+            return 200;
+        }
+        return 500;
+    }
+
 ## HLS
 
 #### hls
