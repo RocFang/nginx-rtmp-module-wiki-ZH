@@ -529,7 +529,7 @@ variables it receives recorded file path.
 
     on_record_done http://example.com/recorded;
 
-### notify_method
+#### notify_method
 syntax: `notify_method get|post`  
 context: rtmp, server, application, recorder  
 
