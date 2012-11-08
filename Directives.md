@@ -387,17 +387,29 @@ recorder name (empty for default recorder). Off by default.
 ## Video on demand
 
 #### play
-Syntax: `play dir`  
+Syntax: `play dir|httploc`  
 Context: rtmp, server, application  
 
-PLay FLVs from specified directory. Indexed
-FLVs are played with random seek capability.
+PLay flv or mp4 file from specified directory or HTTP location.
+If the argument is prefixed with `http://` then it is assumed
+that file should be downloaded from remote http location before
+playing. Note playing is not started until the whole file is
+downloaded. You can use local nginx to cache files on local machine.
+
+Indexed FLVs are played with random seek capability.
 Unindexed FLVs are played with seek/pause disabled
 (restart-only mode). Use FLV indexer (for example, yamdi)
 for indexing.
 
+Mp4 files can only be played if both video and audio codec are supported
+by RTMP. The most common case is H264/AAC.
+
     application vod {
         play /var/flvs;
+    }
+
+    application vod_http {
+        play http://myserver.com/vod;
     }
 
 Playing /var/flvs/dir/file.flv:
