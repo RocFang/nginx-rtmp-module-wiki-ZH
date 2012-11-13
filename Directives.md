@@ -154,7 +154,7 @@ of form $var/${var} can be used within command line:
 * $addr - client address
 * $flashver - client flash version
 * $swfurl - client swf url
-* $tcfurl - client tc url
+* $tcurl - client tc url
 * $pageurl - client page url
 
 The following ffmpeg call transcodes incoming stream to HLS-ready
