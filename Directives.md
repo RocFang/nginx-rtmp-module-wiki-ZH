@@ -206,36 +206,41 @@ Syntax: `exec_publish command arg*`
 Context: rtmp, server, application
 
 Specifies external command with arguments to be executed on
-publish event. Return code is not analyzed.
+publish event. Return code is not analyzed. Substitutions of `exec`
+are supported here as well. In addition `args` variable is supported
+holding query string arguments.
 
 #### exec_play
 Syntax: `exec_play command arg*`  
 Context: rtmp, server, application
 
 Specifies external command with arguments to be executed on
-play event. Return code is not analyzed.
+play event. Return code is not analyzed. Substitution list
+is the same as for `exec_publish`.
 
 #### exec_play_done
 Syntax: `exec_play_done command arg*`  
 Context: rtmp, server, application
 
 Specifies external command with arguments to be executed on
-play_done event. Return code is not analyzed.
+play_done event. Return code is not analyzed. Substitution list
+is the same as for `exec_publish`.
 
 #### exec_publish_done
 Syntax: `exec_publish_done command arg*`  
 Context: rtmp, server, application
 
 Specifies external command with arguments to be executed on
-publish_done event. Return code is not analyzed.
+publish_done event. Return code is not analyzed. Substitution list
+is the same as for `exec_publish`.
 
 #### exec_record_done
 Syntax: `exec_record_done command arg*`  
 Context: rtmp, server, application, recorder
 
 Specifies external command with arguments to be executed when
-recording is finished. Additional variables `path` and `recorder` are supported 
-for this command.
+recording is finished. Substitution of `exec_publish` are supported here
+as well as additional variables `path` and `recorder`.
 
     # track client info
     exec_play bash -c "echo $addr $pageurl >> /tmp/clients";
