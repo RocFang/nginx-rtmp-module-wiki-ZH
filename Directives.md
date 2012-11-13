@@ -234,7 +234,7 @@ Syntax: `exec_record_done command arg*`
 Context: rtmp, server, application, recorder
 
 Specifies external command with arguments to be executed when
-recording is finished. Additional variable `path` is supported 
+recording is finished. Additional variables `path` and `recorder` are supported 
 for this command.
 
     # track client info
