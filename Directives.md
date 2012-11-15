@@ -534,6 +534,26 @@ variables it receives recorded file path.
 
     on_record_done http://example.com/recorded;
 
+#### on_update
+syntax: `on_update url`  
+context: rtmp, server, application  
+  
+Set update callback. This callback is called with period of 
+`notify_update_timeout`. If a request returns HTTP result other
+than 2xx connection is terminated. This can be used to synchronize
+expired sessions.
+
+    on_update http://example.com/update;
+
+#### notify_update_timeout
+syntax: `notify_update_timeout timeout`  
+context: rtmp, server, application  
+
+Sets timeout between `on_update` callbacks. Default is 30 seconds.
+
+    notify_update_timeout 10s;
+    on_update http://example.com/update;
+
 #### notify_method
 syntax: `notify_method get|post`  
 context: rtmp, server, application, recorder  
