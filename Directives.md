@@ -554,6 +554,19 @@ Sets timeout between `on_update` callbacks. Default is 30 seconds.
     notify_update_timeout 10s;
     on_update http://example.com/update;
 
+#### notify_update_strict
+syntax: `notify_update_strict on|off`  
+context: rtmp, server, application  
+
+Toggles strict mode for `on_update` callbacks. Default is off.
+When turned on all connection errors, timeouts as well as HTTP parse
+errors and empty responses are treated as update failures and lead
+to connection termination. When off only valid HTTP response codes
+other that 2xx lead to failure.
+
+    notify_update_strict on;
+    on_update http://example.com/update;
+
 #### notify_method
 syntax: `notify_method get|post`  
 context: rtmp, server, application, recorder  
