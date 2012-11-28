@@ -7,7 +7,7 @@ You have many options:
 > NGINX_ADD_MODULES="/path/to/nginx-rtmp-module" emerge -va nginx
 
 Replace `/path/to/` with the actual module's source path.
-You can add more than one module that is not controlled by USE flags.
+You can add with this method any number of custom modules.
 
 To make this change permanent see:
 http://wiki.gentoo.org/wiki/Knowledge_Base:Overriding_environment_variables_per_package
