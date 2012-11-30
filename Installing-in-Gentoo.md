@@ -2,6 +2,7 @@
 You have many options:
 * Get the zip at https://github.com/arut/nginx-rtmp-module/archive/master.zip
 * Or much better, do a git clone (see options in top of https://github.com/arut/nginx-rtmp-module)
+* Or get an ebuild from [fem-overlay](http://subversion.fem.tu-ilmenau.de/repository/fem-overlay/trunk/www-servers/nginx/nginx-1.2.5-r1.ebuild). And set the USE flag "nginx_modules_rtmp" or "nginx_modules_rtmp_hls".
 
 ## Emerge nginx with nginx-rtmp-module
 > NGINX_ADD_MODULES="/path/to/nginx-rtmp-module" emerge -va nginx
