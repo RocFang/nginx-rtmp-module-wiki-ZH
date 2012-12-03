@@ -267,7 +267,42 @@ Toggles sending metadata to clients. Defaults to on.
 
     meta off;
 
-#### stream_buckets
+#### interleave
+Syntax: `interleave on|off`  
+Context: rtmp, server, application  
+
+Toggles interleave mode. In this mode audio and video
+data is transmitted on the same RTMP chunk stream.
+Defaults to off.
+
+    interleave on;
+
+#### wait_key
+Syntax: `wait_key on|off`  
+Context: rtmp, server, application  
+
+Makes video stream start with a key frame. Defaults to off.
+
+    wait_key on;
+
+#### publish_notify
+Syntax: `publish_notify on|off`  
+Context: rtmp, server, application  
+
+Send `NetStream.Publish.Start` and `NetStream.Publish.Stop` to
+subscribers. Defaults to off.
+
+    wait_key on;
+
+#### drop_idle_publisher
+Syntax: `drop_idle_publisher timeout`  
+Context: rtmp, server, application  
+
+Drop publisher connection which has been idle (no audio/video data)
+within specified time. Default is off. Note this only works when
+connection is in publish mode (after sending `publish` command).
+
+    drop_idle_publisher 10s;
 
 ## Record
 
