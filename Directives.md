@@ -285,6 +285,18 @@ Makes video stream start with a key frame. Defaults to off.
 
     wait_key on;
 
+#### wait_video
+Syntax: `wait_video on|off`  
+Context: rtmp, server, application  
+
+Disable audio until first video frame is sent. Defaults to off.
+Can be combined with `wait_key` to make client receive video
+key frame with all other data following it. However this usually
+increases connection delay. You can tune keyframe interval in your
+encoder to reduce the delay.
+
+    wait_video on;
+
 #### publish_notify
 Syntax: `publish_notify on|off`  
 Context: rtmp, server, application  
