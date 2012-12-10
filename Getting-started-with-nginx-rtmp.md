@@ -144,19 +144,19 @@ We'll stream test file `/var/videos/test.mp4` to server with ffmpeg.
 
 Streaming without conversion (given `test.mp4` codecs are compatible with RTMP)
 
-    ffmpeg -i /var/Videos/test.mp4 -c copy -f flv rtmp://localhost/myapp/mystream
+    ffmpeg -re -i /var/Videos/test.mp4 -c copy -f flv rtmp://localhost/myapp/mystream
 
 Streaming and encoding audio (AAC) and video (H264), need `libx264` and `libfaac`
 
-    ffmpeg -i /var/Videos/test.mp4 -c:v libx264 -c:a libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/myapp/mystream
+    ffmpeg -re -i /var/Videos/test.mp4 -c:v libx264 -c:a libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/myapp/mystream
 
 Streaming and encoding audio (MP3) and video (H264), need `libx264` abd `libmp3lame`
 
-    ffmpeg -i /var/Videos/test.mp4 -c:v libx264 -c:a libmp3lame -ar 44100 -ac 1 -f flv rtmp://localhost/myapp/mystream
+    ffmpeg -re -i /var/Videos/test.mp4 -c:v libx264 -c:a libmp3lame -ar 44100 -ac 1 -f flv rtmp://localhost/myapp/mystream
 
 Streaming and encoding audio (Nellymoser) and video (Sorenson H263)
 
-    ffmpeg -i /var/Videos/test.mp4 -c:v flv -c:a nellymoser -ar 44100 -ac 1 -f flv rtmp://localhost/myapp/mystream
+    ffmpeg -re -i /var/Videos/test.mp4 -c:v flv -c:a nellymoser -ar 44100 -ac 1 -f flv rtmp://localhost/myapp/mystream
 
 ## Publishing video from webcam
 
