@@ -56,7 +56,7 @@ RTMP ping interval. Zero turns ping off. RTMP ping is a protocol feature for
 active connection check. A special packet is sent to remote peer and a reply
 is expected within a timeout specified with ping_timeout directive. If ping
 reply is not received within this time then connection is closed. Default 
-value for ping is 0 (turned off). Default ping timeout is 30 seconds.
+value for ping is 1 minute. Default ping timeout is 30 seconds.
 
     ping 3m;
     ping_timeout 30s;
