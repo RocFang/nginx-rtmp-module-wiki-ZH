@@ -176,7 +176,7 @@ for this example to work.
 Syntax: `exec_kill_signal signal`  
 Context: rtmp, server, application  
 
-Sets process termination signal. Defalt is kill (SIGKILL).
+Sets process termination signal. Default is kill (SIGKILL).
 You can specify numeric or symbolic name (for POSIX.1-1990 signals).
 
     exec_kill_signal term;
@@ -304,7 +304,7 @@ Context: rtmp, server, application
 Send `NetStream.Publish.Start` and `NetStream.Publish.Stop` to
 subscribers. Defaults to off.
 
-    wait_key on;
+    publish_notify on;
 
 #### drop_idle_publisher
 Syntax: `drop_idle_publisher timeout`  
