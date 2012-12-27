@@ -1,13 +1,13 @@
 There's an easy way to display number of clients watching the stream. You need to
 
-- set up statistics page at location `/stat`
+Set up statistics page at location `/stat`
 
     location /stat {
         rtmp_stat all;
         allow 127.0.0.1;
     }
 
-- create a simple xsl stylesheet `nclients.xsl` extracting number of stream subscribers
+Create a simple xsl stylesheet `nclients.xsl` extracting number of stream subscribers
 
     <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
@@ -22,7 +22,7 @@ There's an easy way to display number of clients watching the stream. You need t
 
     </xsl:stylesheet>
 
-- set up a location returning number of suscribers
+Set up a location returning number of suscribers
 
     location /nclients {
         proxy_pass http://127.0.0.1/stat;
@@ -30,4 +30,4 @@ There's an easy way to display number of clients watching the stream. You need t
         add_header Refresh "3; $request_uri";
     }
 
-- use HTTP request `http://myserver.com/nclients?app=myapp&name=mystream` to get the number of stream subscribers
+Use HTTP request `http://myserver.com/nclients?app=myapp&name=mystream` to get the number of stream subscribers
