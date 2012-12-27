@@ -30,4 +30,4 @@ Set up a location returning number of suscribers
         add_header Refresh "3; $request_uri";
     }
 
-Use HTTP request `http://myserver.com/nclients?app=myapp&name=mystream` to get the number of stream subscribers
+Use HTTP request `http://myserver.com/nclients?app=myapp&name=mystream` to get the number of stream subscribers. This number will be automatically refreshed every 3 seconds when opened in browser or iframe.
