@@ -673,7 +673,7 @@ Context: rtmp, server, application
 
 Sets HLS fragment length. Defaults to 5 seconds.
 
-#### hls_playist_length
+#### hls_playlist_length
 Syntax: `hls_playlist_length time`  
 Context: rtmp, server, application  
 
