@@ -659,6 +659,21 @@ Toggles HLS on the application.
     hls_path /tmp/hls;
     hls_fragment 15s;
 
+In `http{}` section set up the following location for clients to play HLS.
+
+    http {
+        ...
+        server {
+            ...
+            location /hls {
+                types {
+                    application/vnd.apple.mpegurl m3u8;
+                }
+                alias /tmp/hls;
+            }
+        }
+    }
+
 #### hls_path
 Syntax: `hls_path path`  
 Context: rtmp, server, application  
