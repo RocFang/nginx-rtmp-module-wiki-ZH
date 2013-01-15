@@ -679,8 +679,7 @@ Syntax: `hls_path path`
 Context: rtmp, server, application  
 
 Sets HLS playlist and fragment directory. This directory should
-exist before NGINX starts. It should be located in memory (tmpfs)
-for best results.
+exist before NGINX starts.
 
 #### hls_fragment
 Syntax: `hls_fragment time`  
