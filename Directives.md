@@ -681,6 +681,51 @@ Sets HLS playlist length. Defaults to 30 seconds.
 
     hls_playlist_length 10m;
 
+## Access log
+
+#### access_log
+Syntax: `access_log off|path [format_name]`  
+Context: rtmp, server, application  
+
+Sets access log parameters. Logging is turned on by default.
+To turn it off use `access_log off` directive. By default access logging
+is done to the same file as HTTP access logger (`logs/access.log`).
+You can specify another log file path in `access_log` directive.
+Second argument is optional. It can be used to specify logging format by name.
+See `log_format` directive for more details about formats.
+
+    log_format new '$remote_addr';
+    access_log logs/rtmp_access.log new;
+    access_log logs/rtmp_access.log;
+    access_log off;
+
+#### log_format
+Syntax: `log_format format_name format`  
+Context: rtmp  
+
+Creates named log format. Log formats look very much the same as nginx HTTP log
+formats. Several variables are supported within log format:
+* `connection` - connection number
+* `remote_addr` - client address
+* `app` - application name
+* `name` - last stream name
+* `args` - last stream play/publish arguments
+* `flashver` - client flashVer
+* `swfurl` - client swfUrl
+* `tcurl` - client tcUrl
+* `pageurl` - client pageUrl
+* `command` - play/publish commands sent by client: `NONE`, `PLAY`, `PUBLISH`, `PLAY+PUBLISH`
+* `bytes_sent` - number of bytes sent to client
+* `bytes_received` - number of bytes received from client
+* `time_local` - local time at the end of client connection
+* `session_time` - connection duration in seconds
+* `session_readable_time` - connection duration in human-readable format
+
+Default log format has the name `combined`. Here's the definition of this format
+
+    $remote_addr [$time_local] $command "$app" "$name" "$args" - 
+    $bytes_received $bytes_sent "$pageurl" "$flashver" ($session_readable_time)
+
 ## Statistics
 
 Statistics module is NGINX HTTP module unlike all other modules listed
