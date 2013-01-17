@@ -332,7 +332,7 @@ absolute frame is sent fixing that. Default is 300ms.
 
 #### record
 syntax: `record [off|all|audio|video|keyframes|manual]*`  
-context: rtmp, server, application  
+context: rtmp, server, application, recorder  
 
 Toggles record mode. Stream can be recorded in flv file. This directive
 specifies what exactly should be recorded:
@@ -352,7 +352,7 @@ There can be any compatible combination of keys in a single record directive.
 
 #### record_path
 syntax: `record_path path`  
-context: rtmp, server, application  
+context: rtmp, server, application, recorder  
 
 Specifies record path to put recorded flv files to.
 
@@ -360,7 +360,7 @@ Specifies record path to put recorded flv files to.
 
 #### record_suffix
 syntax: `record_suffix value`  
-context: rtmp, server, application  
+context: rtmp, server, application, recorder  
 
 Sets record file suffix. Defaults to '.flv'.
 
@@ -368,16 +368,26 @@ Sets record file suffix. Defaults to '.flv'.
 
 #### record_unique
 syntax: `record_unique on|off`  
-context: rtmp, server, application  
+context: rtmp, server, application, recorder  
 
 If turned on appends current timestamp to recorded files. Otherwise the same file
 is re-written each time new recording takes place. Default is off.
 
-    record_unique off;
+    record_unique on;
+
+#### record_lock
+syntax: `record_lock on|off`  
+context: rtmp, server, application, recorder  
+
+When turned on currently recorded file gets locked with `fcntl` call.
+That can be checked from elsewhere to find out which file is being recorded.
+Default is off.
+
+    record_lock on;
 
 #### record_max_size
 syntax: `record_max_size size`  
-context: rtmp, server, application  
+context: rtmp, server, application, recorder  
 
 Set maximum recorded file size.
 
@@ -385,7 +395,7 @@ Set maximum recorded file size.
 
 #### record_max_frames
 syntax: `record_max_frames nframes`  
-context: rtmp, server, application  
+context: rtmp, server, application, recorder  
 
 Sets maximum number of video frames per recorded file.
 
@@ -393,7 +403,7 @@ Sets maximum number of video frames per recorded file.
 
 #### record_interval
 syntax: `record_interval time`  
-context: rtmp, server, application
+context: rtmp, server, application, recorder
   
 Restart recording after this number of (milli)seconds.
 Off by default. Zero means no delay between recordings. If
