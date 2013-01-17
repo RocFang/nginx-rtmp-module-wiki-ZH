@@ -386,7 +386,7 @@ Default is off.
     record_lock on;
 
 On FreeBSD you can use `flock` tool to check that. On Linux `flock` and `fcntl`
-are unrelated so you are left with writing simple scripts checking file lock status.
+are unrelated so you are left with writing a simple script checking file lock status.
 Here's an example of such script `isunlocked.py`.
 
     #!/usr/bin/python
