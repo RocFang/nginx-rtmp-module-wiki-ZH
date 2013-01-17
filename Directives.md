@@ -385,6 +385,17 @@ Default is off.
 
     record_lock on;
 
+On FreeBSD you can use `flock` tool to check that. On Linux `flock` and `fcntl`
+are unrelated so you are left with writing simple scripts checking file lock status.
+Here's an example of such script `isunlocked.py`.
+
+    #!/usr/bin/python
+
+    import fcntl, sys
+
+    sys.stderr.close()
+    fcntl.lockf(open(sys.argv[1], "a"), fcntl.LOCK_EX|fcntl.LOCK_NB)
+
 #### record_max_size
 syntax: `record_max_size size`  
 context: rtmp, server, application, recorder  
