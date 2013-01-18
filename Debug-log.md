@@ -4,7 +4,7 @@ For that configure nginx with *--with-debug* flag.
     cd nginx-X.Y.Z
     ./configure --add-module=/path/to/nginx-rtmp-module --with-debug ...
 
-After compiling set nginx error.log level to *debug* in nginx.com
+After compiling set nginx error.log level to *debug* in nginx.conf
 
     error_log logs/error.log debug;
 
