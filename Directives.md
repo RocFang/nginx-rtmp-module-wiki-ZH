@@ -328,6 +328,17 @@ absolute frame is sent fixing that. Default is 300ms.
 
     sync 10ms;
 
+#### play_restart
+Syntax: `play_restart on|off`  
+Context: rtmp, server, application  
+
+If enabled nginx-rtmp sends NetStream.Play.Start and NetStream.Play.Stop
+to each subscriber every time publisher starts or stops publishing. If disabled
+each subscriber receives those notifications only at the start and end of
+playback. Default is on.
+
+    play_restart off;
+
 ## Record
 
 #### record
