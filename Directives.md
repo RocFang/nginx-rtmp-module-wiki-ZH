@@ -727,6 +727,16 @@ Sets HLS playlist length. Defaults to 30 seconds.
 
     hls_playlist_length 10m;
 
+#### hls_sync
+Syntax: `hls_sync time`  
+Context: rtmp, server, application  
+
+Sets HLS timestamp synchronization threshold. Default is 300ms.
+This feature prevents crackling noises after conversion
+from low-resolution RTMP (1KHz) to high-resolution MPEG-TS (90KHz).
+
+    hls_sync 100ms;
+
 ## Access log
 
 #### access_log
