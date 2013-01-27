@@ -737,6 +737,16 @@ from low-resolution RTMP (1KHz) to high-resolution MPEG-TS (90KHz).
 
     hls_sync 100ms;
 
+#### hls_continuous
+Syntax: `hls_continuous on|off`  
+Context: rtmp, server, application  
+
+Toggles HLS continuous mode. In this mode HLS sequence number
+is started from where it stopped last time. Old fragments are
+keeped. Default is off.
+
+    hls_continuous on;
+
 ## Access log
 
 #### access_log
