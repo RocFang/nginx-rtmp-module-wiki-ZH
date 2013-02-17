@@ -514,6 +514,11 @@ by RTMP. The most common case is H264/AAC.
         play http://myserver.com/vod;
     }
 
+    application vod_mirror {
+        # try local location first, then access remote location
+        play /var/local_mirror http://myserver.com/vod;
+    }
+
 Playing /var/flvs/dir/file.flv:
 
     ffplay rtmp://localhost/vod/dir/file.flv
