@@ -483,7 +483,7 @@ recorder name (empty for default recorder). Off by default.
 ## Video on demand
 
 #### play
-Syntax: `play dir|httploc`  
+Syntax: `play dir|http://loc [dir|http://loc]*`  
 Context: rtmp, server, application  
 
 PLay flv or mp4 file from specified directory or HTTP location.
@@ -491,6 +491,12 @@ If the argument is prefixed with `http://` then it is assumed
 that file should be downloaded from remote http location before
 playing. Note playing is not started until the whole file is
 downloaded. You can use local nginx to cache files on local machine.
+
+Multiple play locations can be specified in a single `play` directive.
+When multiple `play` directives are specified the location lists
+are merged and inherited from higher scopes. An attempt to play
+each location is made until a successful location is found.
+If such location is not found error status is sent to client.
 
 Indexed FLVs are played with random seek capability.
 Unindexed FLVs are played with seek/pause disabled
