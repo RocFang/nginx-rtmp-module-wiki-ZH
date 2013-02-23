@@ -523,6 +523,34 @@ Playing /var/flvs/dir/file.flv:
 
     ffplay rtmp://localhost/vod/dir/file.flv
 
+#### play_temp_path
+Syntax: `play_temp_path dir`  
+Context: rtmp, server, application  
+
+Sets location where remote VOD files are stored before playing.
+Default is `/tmp`;
+
+    play_temp_path /www;
+    play http://example.com/videos;
+
+#### play_local_path
+Syntax: `play_local_path dir`  
+Context: rtmp, server, application  
+
+Sets location where remote VOD files copied from `play_temp_path`
+directory after they are completely downloaded. Empty value
+disables the feature. By default it's empty. The feature can be used
+for caching remote files locally. 
+
+This path should be on the same device as `play_temp_path`.
+
+    # search file in /tmp/videos.
+    # if not found play from remote location
+    # and store in /tmp/videos
+
+    play_local_path /tmp/videos;
+    play /tmp/videos http://example.com/videos;
+
 ## Relay
 
 #### pull
