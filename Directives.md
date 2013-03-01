@@ -831,6 +831,16 @@ Default log format has the name `combined`. Here's the definition of this format
     $remote_addr [$time_local] $command "$app" "$name" "$args" - 
     $bytes_received $bytes_sent "$pageurl" "$flashver" ($session_readable_time)
 
+## Limits
+
+#### max_connections
+Syntax: `max_connections number`  
+Context: rtmp, server, application  
+
+Sets maximum number of connections for rtmp engine. Off by refault.
+
+    max_connections 100;
+
 ## Statistics
 
 Statistics module is NGINX HTTP module unlike all other modules listed
