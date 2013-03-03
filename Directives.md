@@ -391,7 +391,7 @@ syntax: `record_append on|off`
 context: rtmp, server, application, recorder  
 
 Toggles file append mode. When turned on recorder appends new data to the old file
-or creates it when if missing. There's no time gap between the old data and the new
+or creates it when it's missing. There's no time gap between the old data and the new
 data in file. Default is off.
 
     record_append on;
