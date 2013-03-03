@@ -609,6 +609,16 @@ Timeout to wait before reconnecting pushed connection after disconnect. Default 
 
     push_reconnect 1s;
 
+#### session_relay
+Syntax: `session_relay on|off`  
+Context: rtmp, server, application  
+
+Toggles session relay mode. In this mode relay is destroyed when connection is closed.
+When the setting is off relay is destroyed when stream is closed so that another relay
+could possibly be created later. Default is off.
+
+    session_relay on;
+
 ## Notify
 
 #### on_play
