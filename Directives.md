@@ -386,6 +386,16 @@ is re-written each time new recording takes place. Default is off.
 
     record_unique on;
 
+#### record_append
+syntax: `record_append on|off`  
+context: rtmp, server, application, recorder  
+
+Toggles file append mode. When turned on recorder appends new data to the old file
+or creates it when if missing. There's no time gap between the old data and the new
+data in file. Default is off.
+
+    record_append on;
+
 #### record_lock
 syntax: `record_lock on|off`  
 context: rtmp, server, application, recorder  
