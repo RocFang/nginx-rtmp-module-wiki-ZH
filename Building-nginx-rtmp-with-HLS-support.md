@@ -1,3 +1,6 @@
+## If you using native-hls branch skip this!
+
+
 If ffmpeg on your system is too old or you have avconv instead ffmpeg follow
 this guide to build nginx-rtmp with HLS support.
 
