@@ -621,6 +621,48 @@ could possibly be created later. Default is off.
 
 ## Notify
 
+#### on_connect
+Syntax: `on_connect url`  
+Context: rtmp, server  
+
+Sets HTTP connection callback. When clients issues connect command
+an HTTP request is issued asynchronously and command processing is
+suspended until it returns result code. If HTTP 2xx code is returned
+then RTMP session continues. Otherwise connection is dropped.
+
+Note this directive is not allowed in application scope since
+application is still unknown at connection stage.
+
+HTTP request receives a number of arguments. POST method is used with
+application/x-www-form-urlencoded MIME type. The following arguments are
+passed to caller:
+* call=connect
+* addr - client IP address
+* app - application name
+* flashVer - client flash version
+* swfUrl - client swf url
+* tcUrl - tcUrl
+* pageUrl - client page url
+
+In addition to the above mentioned items all arguments passed explicitly to 
+connect command are also sent with the callback. You should distinguish
+connect arguments from play/publish arguments. Players usually have a special
+way of setting connection string separate from play/publish stream name.
+As an example here's how these arguments are set in JWPlayer
+
+    ...
+    streamer: "rtmp://localhost/myapp?connarg1=a&connarg2=b",
+    file: "mystream?strarg1=c&strarg2=d",
+    ...
+
+Ffplay (with librtmp) example
+
+    ffplay "rtmp://localhost app=myapp?connarg1=a&connarg2=b playpath=mystream?strarg1=c&strarg2=d"
+
+Usage example
+
+    on_connect http://example.com/my_auth;
+
 #### on_play
 Syntax: `on_play url`  
 Context: rtmp, server, application  
