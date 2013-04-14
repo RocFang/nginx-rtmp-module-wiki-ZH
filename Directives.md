@@ -628,7 +628,9 @@ Context: rtmp, server
 Sets HTTP connection callback. When clients issues connect command
 an HTTP request is issued asynchronously and command processing is
 suspended until it returns result code. If HTTP 2xx code is returned
-then RTMP session continues. Otherwise connection is dropped.
+then RTMP session continues. The code of 3xx makes RTMP redirect
+to another application whose name is taken from `Location` HTTP
+response header. Otherwise connection is dropped.
 
 Note this directive is not allowed in application scope since
 application is still unknown at connection stage.
@@ -663,6 +665,15 @@ Usage example
 
     on_connect http://example.com/my_auth;
 
+Redirect example
+
+    location /on_connect {
+        if ($arg_flashver != "my_secret_flashver") {
+            rewrite ^.*$ fallback? permanent;
+        }
+        return 200;
+    }
+
 #### on_play
 Syntax: `on_play url`  
 Context: rtmp, server, application  
@@ -670,7 +681,9 @@ Context: rtmp, server, application
 Sets HTTP play callback. Each time a clients issues play command
 an HTTP request is issued asynchronously and command processing is
 suspended until it returns result code. If HTTP 2xx code is returned
-then RTMP session continues. Otherwise connection is dropped.
+then RTMP session continues. The code of 3xx redirects RTMP to
+another stream whose name is taken from `Location` HTTP response header.
+Otherwise connection is dropped.
 
 HTTP request receives a number of arguments. POST method is used with
 application/x-www-form-urlencoded MIME type. The following arguments are
