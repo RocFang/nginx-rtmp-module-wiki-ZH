@@ -157,13 +157,20 @@ of form $var/${var} can be used within command line:
 * $tcurl - client tc url
 * $pageurl - client page url
 
+Shell-style redirects can be specified in exec directive for writing output
+and accepting input. Supported are
+* truncating output `>file`
+* appending output `>>file`
+* descriptor redirects like `1>&2`
+* input `<file`
+
 The following ffmpeg call transcodes incoming stream to HLS-ready
 stream (H264/AAC). FFmpeg should be compiled with libx264 & libfaac support
 for this example to work.
 
     application src {
         live on;
-        exec /usr/bin/ffmpeg -i rtmp://localhost/src/$name -vcodec libx264 -vprofile baseline -g 10 -s 300x200 -acodec libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/hls/$name;
+        exec ffmpeg -i rtmp://localhost/src/$name -vcodec libx264 -vprofile baseline -g 10 -s 300x200 -acodec libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/hls/$name 2>>/var/log/ffmpeg-$name.log;
     }
 
     application hls {
