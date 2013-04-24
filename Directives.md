@@ -384,6 +384,15 @@ Sets record file suffix. Defaults to '.flv'.
 
     record_suffix _recorded.flv;
 
+Record suffix can be a pattern in `strftime` format.
+The following directive
+
+    record_suffix -%d-%b-%y-%T.flv
+
+will produce files of the form `mystream-24-Apr-13-18:23:38.flv`.
+All supported `strftime` format options can be found on `strftime`
+[man page](http://pubs.opengroup.org/onlinepubs/009695399/functions/strftime.html).
+
 #### record_unique
 syntax: `record_unique on|off`  
 context: rtmp, server, application, recorder  
