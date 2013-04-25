@@ -877,6 +877,17 @@ keeped. Default is off.
 
     hls_continuous on;
 
+#### hls_nested
+Syntax: `hls_nested on|off`  
+Context: rtmp, server, application  
+
+Toggles HLS nested mode. In this mode a subdirectory
+of `hls_path` is created for each stream. Playlist
+and fragments are created in that subdirectory.
+Default is off.
+
+    hls_nested on;
+
 ## Access log
 
 #### access_log
