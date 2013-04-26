@@ -1,4 +1,4 @@
-## This page is outdated. HLS is not included in rtmp module and does not need ffmpeg libs for compilation.
+## This page is outdated. HLS is now included in rtmp module and does not need ffmpeg libs for compilation.
 
 
 If ffmpeg on your system is too old or you have avconv instead ffmpeg follow
