@@ -20,8 +20,6 @@ Build nginx with nginx-rtmp
     make
     make install
 
-To build with HLS support follow [this](https://github.com/arut/nginx-rtmp-module/wiki/Building-nginx-rtmp-with-HLS-support) guide.
-
 ## Set up live streaming
 
 To set up RTMP support you need to add `rtmp{}` section to `nginx.conf` (can be found in PREFIX/conf/nginx.conf). Stock `nginx.conf` contains only `http{}` section.
