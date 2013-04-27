@@ -11,7 +11,7 @@
 `sudo vi debian/rules`
 
 Edit the rules and at then end of the add-modules configuration string add
-`--add-module=/usr/src/nginx-rtmp-module \`
+`--add-module=/usr/src/nginx/nginx-rtmp-module \`
 
 `dpkg-buildpackage -b`
 
