@@ -174,6 +174,7 @@ for this example to work.
     }
 
     application hls {
+        live on;
         hls on;
         hls_path /tmp/hls;
         hls_fragment 15s;
