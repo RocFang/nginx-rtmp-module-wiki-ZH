@@ -763,7 +763,8 @@ context: rtmp, server, application
 Set update callback. This callback is called with period of 
 `notify_update_timeout`. If a request returns HTTP result other
 than 2xx connection is terminated. This can be used to synchronize
-expired sessions.
+expired sessions. Additional `time` argument is passed to this handler
+which is the number of seconds since play/publish call.
 
     on_update http://example.com/update;
 
