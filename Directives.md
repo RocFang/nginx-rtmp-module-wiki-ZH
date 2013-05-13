@@ -763,7 +763,8 @@ Syntax: `on_publish url`
 Context: rtmp, server, application  
 
 The same as on_play above with the only difference that this directive sets
-callback on publish command.
+callback on publish command. Instead of remote pull push is performed in
+this case.
 
 #### on_done
 Syntax: `on_done url`  
