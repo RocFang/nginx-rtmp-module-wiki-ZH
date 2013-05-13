@@ -704,7 +704,7 @@ analyzed.
 * HTTP 3xx redirects RTMP to another stream whose name is taken from 
 `Location` HTTP response header. If new stream name is started with `rtmp://`
 then remote relay is created instead. Relays require that IP address is
-specified instead of domain name and only works with nginx versions
+specified instead of domain name and only work with nginx versions
 greater than 1.3.10.
 * Otherwise RTMP connection is dropped
 
