@@ -705,7 +705,7 @@ analyzed.
 `Location` HTTP response header. If new stream name is started with `rtmp://`
 then remote relay is created instead. Relays require that IP address is
 specified instead of domain name and only work with nginx versions
-greater than 1.3.10.
+greater than 1.3.10. See also `notify_relay_redirect`.
 * Otherwise RTMP connection is dropped
 
 Redirect example
@@ -826,6 +826,16 @@ other that 2xx lead to failure.
 
     notify_update_strict on;
     on_update http://example.com/update;
+
+#### notify_relay_redirect
+syntax: `notify_relay_redirect on|off`  
+context: rtmp, server, application  
+
+Enables local stream redirect for `on_play` and `on_publish` remote
+redirects. New stream name is RTMP URL used for remote redirect.
+Default is off.
+
+    notify_relay_redirect on;
 
 #### notify_method
 syntax: `notify_method get|post`  
