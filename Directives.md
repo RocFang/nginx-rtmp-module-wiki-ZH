@@ -697,10 +697,47 @@ Context: rtmp, server, application
 
 Sets HTTP play callback. Each time a clients issues play command
 an HTTP request is issued asynchronously and command processing is
-suspended until it returns result code. If HTTP 2xx code is returned
-then RTMP session continues. The code of 3xx redirects RTMP to
-another stream whose name is taken from `Location` HTTP response header.
-Otherwise connection is dropped.
+suspended until it returns result code. HTTP result code is then 
+analyzed.
+
+* HTTP 2xx code continues RTMP session
+* HTTP 3xx redirects RTMP to another stream whose name is taken from 
+`Location` HTTP response header. If new stream name is started with `rtmp://`
+then remote relay is created instead. Relays require that IP address is
+specified instead of domain name and only works with nginx versions
+greater than 1.3.10.
+* Otherwise RTMP connection is dropped
+
+Redirect examples
+
+    http {
+        ...
+        location /local_redirect {
+            rewrite ^.*$ newname? permanent;
+        }
+        location /remote_redirect {
+            # no domain name here, only ip
+            rewrite ^.*$ rtmp://192.168.1.123/someapp/somename? permanent;
+        }
+
+        ...
+    }
+
+    rtmp {
+        ...
+        application myapp1 {
+            live on;
+            # stream will be redirected to 'newname'
+            on_play http://localhost:8080/local_redirect;
+        }
+        application myapp2 {
+            live on;
+            # stream will be pulled from remote location
+            # requires nginx >= 1.3.10
+            on_play http://localhost:8080/remote_redirect;
+        }
+        ...
+    }
 
 HTTP request receives a number of arguments. POST method is used with
 application/x-www-form-urlencoded MIME type. The following arguments are
