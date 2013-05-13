@@ -708,7 +708,7 @@ specified instead of domain name and only works with nginx versions
 greater than 1.3.10.
 * Otherwise RTMP connection is dropped
 
-Redirect examples
+Redirect example
 
     http {
         ...
@@ -719,7 +719,6 @@ Redirect examples
             # no domain name here, only ip
             rewrite ^.*$ rtmp://192.168.1.123/someapp/somename? permanent;
         }
-
         ...
     }
 
