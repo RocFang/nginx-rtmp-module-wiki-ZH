@@ -937,6 +937,16 @@ Default is off.
 
     hls_nested on;
 
+#### hls_cleanup
+Syntax: `hls_cleanup on|off`  
+Context: rtmp, server, application  
+
+Toggles HLS cleanup. By default the feature is on.
+In this mode nginx cache manager process removes old
+HLS fragments and playlists from HLS directory.
+
+    hls_cleanup off;
+
 ## Access log
 
 #### access_log
