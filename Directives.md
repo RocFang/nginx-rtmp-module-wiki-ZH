@@ -180,6 +180,15 @@ for this example to work.
         hls_fragment 15s;
     }
 
+#### exec_static
+Syntax: `exec_static command arg*`  
+Context: rtmp, server, application
+
+Similar to `exec` but runs specified command at nginx start.
+Does not support substitutions since has no session context.
+
+    exec_static ffmpeg -i http://example.com/video.ts -c copy -f flv rtmp://localhost/myapp/mystream;
+
 #### exec_kill_signal
 Syntax: `exec_kill_signal signal`  
 Context: rtmp, server, application  
