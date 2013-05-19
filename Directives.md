@@ -613,6 +613,7 @@ all local streams within application are pulled
 * live - toggles special behavior for live streaming, values: 0,1
 * start - start time in seconds
 * stop - stop time in seconds
+* static - makes pull static, such pull is created at nginx start
 
 If a value for a parameter contains spaces then you should use quotes around
 the **WHOLE** key=value pair like this : `'pageUrl=FAKE PAGE URL'`.
@@ -620,6 +621,8 @@ the **WHOLE** key=value pair like this : `'pageUrl=FAKE PAGE URL'`.
     pull rtmp://cdn.example.com/main/ch?id=12563 name=channel_a;
 
     pull rtmp://cdn2.example.com/another/a?b=1&c=d pageUrl=http://www.example.com/video.html swfUrl=http://www.example.com/player.swf live=1;
+
+    pull rtmp://cdn.example.com/main/ch?id=12563 name=channel_a static;
 
 #### push
 Syntax: `push url [key=value]*`  
