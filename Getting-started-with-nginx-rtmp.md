@@ -14,9 +14,15 @@ Download & unpack nginx (you can also use svn)
     tar xzf nginx-1.2.4.tar.gz
     cd nginx-1.2.4
 
-Build nginx with nginx-rtmp
+Build nginx 1.2.x with nginx-rtmp
 
     ./configure --add-module=/usr/build/nginx-rtmp-module
+    make
+    make install
+
+Build nginx 1.4.x with nginx-rtmp 
+
+    ./configure --add-module=/usr/build/nginx-rtmp-module --with-http_ssl_module
     make
     make install
 
