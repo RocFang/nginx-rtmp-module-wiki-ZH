@@ -557,7 +557,10 @@ by RTMP. The most common case is H264/AAC.
 
 Playing /var/flvs/dir/file.flv:
 
-    ffplay rtmp://localhost/vod/dir/file.flv
+    ffplay rtmp://localhost/vod//dir/file.flv
+
+The two slashes after `vod` make ffplay use `vod` and application name
+and the rest of the url as playpath.
 
 #### play_temp_path
 Syntax: `play_temp_path dir`  
