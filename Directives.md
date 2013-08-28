@@ -952,6 +952,20 @@ Default is off.
 
     hls_nested on;
 
+#### hls_base_url
+Syntax: `hls_base_url url`  
+Context: rtmp, server, application  
+
+Sets base url for HLS playlist items. When empty those
+items have no prefix and assumed to be at the same location
+as parent playlist or one level lower when `hls_nested` is
+used. This feature applies both to master (variant) and slave 
+HLS playlists. It can let you download the playlist and play it
+locally since it contains full references to child playlists or
+fragments. Empty by default.
+
+    hls_base_url http://myserver.com/hls/;
+
 #### hls_cleanup
 Syntax: `hls_cleanup on|off`  
 Context: rtmp, server, application  
