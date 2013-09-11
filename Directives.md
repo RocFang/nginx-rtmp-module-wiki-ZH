@@ -976,6 +976,47 @@ HLS fragments and playlists from HLS directory.
 
     hls_cleanup off;
 
+#### hls_variant
+Syntax: `hls_variant suffix [param*]`  
+Context: rtmp, server, application  
+
+Adds HLS variant entry. When suffix is matched on stream name
+then variant playlist is created for the current stream with all
+entries specified by `hls_variant` directives in current application.
+Stripped name without suffix is used as variant stream name. The original
+stream is processed as usual.
+
+Optional parameters following the suffix are appended to `EXT-X-STREAM-INF` in
+m3u8 playlist. See HLS spec. 3.3.10. EXT-X-STREAM-INF for the full list of supported
+parameters.
+
+    rtmp {
+        server {
+            listen 1935;
+        
+            application src {
+                live on;
+
+                exec ffmpeg -i rtmp://localhost/src/$name
+                  -c:a libfdk_aac -b:a 32k  -c:v libx264 -b:v 128K -f flv rtmp://localhost/hls/$name_low
+                  -c:a libfdk_aac -b:a 64k  -c:v libx264 -b:v 256k -f flv rtmp://localhost/hls/$name_mid
+                  -c:a libfdk_aac -b:a 128k -c:v libx264 -b:v 512K -f flv rtmp://localhost/hls/$name_hi;
+            }
+
+            application hls {
+                live on;
+
+                hls on;
+                hls_path /tmp/hls;
+                hls_nested on;
+
+                hls_variant _low BANDWIDTH=160000;
+                hls_variant _mid BANDWIDTH=320000;
+                hls_variant _hi  BANDWIDTH=640000;
+            }
+        }
+    }
+
 ## Access log
 
 #### access_log
