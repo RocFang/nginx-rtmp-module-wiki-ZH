@@ -277,12 +277,17 @@ Toggles live mode i.e. one-to-many broadcasting.
     live on;
 
 #### meta
-Syntax: `meta on|off`  
+Syntax: `meta on|copy|off`  
 Context: rtmp, server, application  
 
-Toggles sending metadata to clients. Defaults to on.
+Sets metadata sending mode. The value of `on` makes subscribers
+receive reconstructed metadata packets containing predefined fields like
+width, height etc. The value of `copy` makes clients receive exact copy of
+publisher metadata block including both standard and specific fields. The
+value of `off` turns off sending any RTMP metadata to subscribers.
+Defaults to on.
 
-    meta off;
+    meta copy;
 
 #### interleave
 Syntax: `interleave on|off`  
