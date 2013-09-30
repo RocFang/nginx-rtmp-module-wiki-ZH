@@ -981,6 +981,31 @@ HLS fragments and playlists from HLS directory.
 
     hls_cleanup off;
 
+#### hls_fragment_naming
+Syntax: `hls_fragment_naming sequential|timestamp|system`  
+Context: rtmp, server, application  
+
+Sets fragment naming mode.
+* sequential - use increasing integers
+* timestamp - use stream timestamp
+* system - use system time
+
+Default is sequential.
+
+    hls_fragment_naming system;
+
+#### hls_fragment_slicing
+Syntax: `hls_fragment_naming plain|aligned`  
+Context: rtmp, server, application  
+
+Sets fragment slicing mode.
+* plain - switch fragment when target duration is reached
+* aligned - switch fragment when incoming timestamp is a multiple of fragment duration. This mode makes it possible to generate identical fragments on different nginx instances
+
+Default is plain.
+
+    hls_fragment_slicing aligned;
+
 #### hls_variant
 Syntax: `hls_variant suffix [param*]`  
 Context: rtmp, server, application  
