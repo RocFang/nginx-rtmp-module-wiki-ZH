@@ -995,7 +995,7 @@ Default is sequential.
     hls_fragment_naming system;
 
 #### hls_fragment_slicing
-Syntax: `hls_fragment_naming plain|aligned`  
+Syntax: `hls_fragment_slicing plain|aligned`  
 Context: rtmp, server, application  
 
 Sets fragment slicing mode.
