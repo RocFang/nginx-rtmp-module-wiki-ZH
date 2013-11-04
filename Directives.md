@@ -825,6 +825,7 @@ are passed to this handler
 * `time` is the number of seconds since play/publish call
 * `timestamp` is RTMP timestamp of the last audio/video packet sent to the client
 
+
     on_update http://example.com/update;
 
 #### notify_update_timeout
