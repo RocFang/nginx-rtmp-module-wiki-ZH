@@ -821,10 +821,12 @@ Set update callback. This callback is called with period of
 `notify_update_timeout`. If a request returns HTTP result other
 than 2xx connection is terminated. This can be used to synchronize
 expired sessions. Two additional arguments `time` and `timestamp` 
-are passed to this handler
+are passed to this handler:
 * `time` is the number of seconds since play/publish call
 * `timestamp` is RTMP timestamp of the last audio/video packet sent to the client
 
+You can use `timestamp` argument to individually limit playback duration 
+for each user.
 
     on_update http://example.com/update;
 
