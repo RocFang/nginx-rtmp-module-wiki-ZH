@@ -323,7 +323,7 @@ encoder to reduce the delay.
 Syntax: `publish_notify on|off`  
 Context: rtmp, server, application  
 
-Send `NetStream.Publish.Start` and `NetStream.Publish.Stop` to
+Send `NetStream.Play.PublishNotify` and `NetStream.Play.UnpublishNotify` to
 subscribers. Defaults to off.
 
     publish_notify on;
