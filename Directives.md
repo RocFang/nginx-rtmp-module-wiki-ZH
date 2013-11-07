@@ -361,6 +361,16 @@ playback. Default is on.
 
     play_restart off;
 
+#### idle_streams
+Syntax: `idle_streams on|off`  
+Context: rtmp, server, application  
+
+If disabled nginx-rtmp prevents subscribers from connecting to idle/nonexistent
+live streams and disconnects all subscribers when stream publisher disconnects.
+Default is on.
+
+    idle_streams off;
+
 ## Record
 
 #### record
