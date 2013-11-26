@@ -137,8 +137,8 @@ See allow for description.
 
 ## Exec
 
-#### exec
-Syntax: `exec command arg*`  
+#### exec_push
+Syntax: `exec_push command arg*`  
 Context: rtmp, server, application
 
 Specifies external command with arguments to be executed on
@@ -157,7 +157,7 @@ of form $var/${var} can be used within command line:
 * $tcurl - client tc url
 * $pageurl - client page url
 
-Shell-style redirects can be specified in exec directive for writing output
+Shell-style redirects can be specified in `exec_push` directive for writing output
 and accepting input. Supported are
 * truncating output `>file`
 * appending output `>>file`
@@ -170,7 +170,7 @@ for this example to work.
 
     application src {
         live on;
-        exec ffmpeg -i rtmp://localhost/src/$name -vcodec libx264 -vprofile baseline -g 10 -s 300x200 -acodec libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/hls/$name 2>>/var/log/ffmpeg-$name.log;
+        exec_push ffmpeg -i rtmp://localhost/src/$name -vcodec libx264 -vprofile baseline -g 10 -s 300x200 -acodec libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/hls/$name 2>>/var/log/ffmpeg-$name.log;
     }
 
     application hls {
@@ -179,6 +179,65 @@ for this example to work.
         hls_path /tmp/hls;
         hls_fragment 15s;
     }
+
+#### exec_pull
+Syntax: `exec_pull command arg*`  
+Context: rtmp, server, application
+
+Specifies external command with arguments to be executed on play event.
+The command is executed when first client connects to the stream and is
+killed when the last one disconnects. This directive makes it possible
+to pull remote stream in any format for local clients.
+
+The feature works reliably only in single-worker mode. The reason for this
+is we cannot make sure external process always connects to the right worker.
+It will obviously connect to a random one. While this will still work in
+most cases it's not a recommended architecture, it will be unstable and buggy.
+
+Directive arguments are the same as for `exec_push`.
+
+    application myapp {
+        live on;
+        exec_pull ffmpeg -i http://example.com/video_$name.ts -c copy -f flv rtmp://localhost/$app/$name;
+    }
+
+In the above configuration `exec_pull` directive serves all streams. That leads
+to certain limitations on remote stream name format. It should be possible to construct
+the remote url using available variables like `$app`, `$name` etc. When it's not possible
+you can add `exec_options on` directive which permits setting additional stream options
+in exec-family directives. The only option supported now is `name` option.
+
+    application myapp {
+        live on;
+        exec_options on
+        exec_pull ffmpeg -i http://example.com/tv1.ts -c copy -f flv rtmp://localhost/$app/$name name=mystream;
+        exec_pull ffmpeg -i http://another.example.com/video_plus.ts -c copy -f flv rtmp://localhost/$app/$name name=anotherstream;
+    }
+
+#### exec
+Syntax: `exec command arg*`  
+Context: rtmp, server, application
+
+`exec` is an alias of `exec_push`
+
+#### exec_options
+Syntax: `exec_options on|off`  
+Context: rtmp, server, application
+
+The directive toggles exec options mode. When activated you can
+add exec-family directive options. The only exec option supported is `name`.
+This option makes it possible to apply exec only to specified stream.
+Default if off.
+
+    exec_options on;
+    # call on_publish only for "mystream"
+    exec_publish http://localhost/on_publish name=mystream;
+    # call on_play only for "another"
+    exec_play http://localhost/on_play name=another;
+    # execute different ffmpeg's for different streams
+    exec_pull http://example.com/abc.ts -c copy -f flv rtmp://localhost/$name/$app name=mystream;
+    exec_pull http://my.example.com/tele.ts -c copy -f flv rtmp://localhost/$name/$app name=tv;
+    exec_pull http://enother.example.com/hello/f.ts -c copy -f flv rtmp://localhost/$name/$app name=fun;
 
 #### exec_static
 Syntax: `exec_static command arg*`  
