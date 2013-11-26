@@ -1062,6 +1062,18 @@ parameters.
         }
     }
 
+#### hls_type
+Syntax: `hls_type live|event`  
+Context: rtmp, server, application  
+
+Sets HLS playlist type specified in `X-PLAYLIST-TYPE` playlist directive.
+Live HLS stream is usually played from the current live position which is 
+several fragments to the end of playlist. Event HLS stream is always played 
+from the start of playlist. When in `event` mode make sure playlist length 
+is enough for the whole event. Default is `live`;
+
+    hls_type event;
+
 ## Access log
 
 #### access_log
