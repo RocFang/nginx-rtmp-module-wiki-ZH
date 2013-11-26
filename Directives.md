@@ -232,8 +232,10 @@ Default if off.
     exec_options on;
     # call on_publish only for "mystream"
     exec_publish http://localhost/on_publish name=mystream;
+
     # call on_play only for "another"
     exec_play http://localhost/on_play name=another;
+
     # execute different ffmpeg's for different streams
     exec_pull http://example.com/abc.ts -c copy -f flv rtmp://localhost/$name/$app name=mystream;
     exec_pull http://my.example.com/tele.ts -c copy -f flv rtmp://localhost/$name/$app name=tv;
