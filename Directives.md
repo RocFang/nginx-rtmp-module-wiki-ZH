@@ -1198,7 +1198,7 @@ Context: rtmp, server, application
 
 Toggles MPEG-DASH cleanup. By default the feature is on.
 In this mode nginx cache manager process removes old
-MPEG-DASH fragments and playlists from MPEG-DASH directory.
+MPEG-DASH fragments and manifests from MPEG-DASH directory.
 Init fragments are deleted after stream manifest is deleted.
 
     dash_cleanup off;
