@@ -976,7 +976,7 @@ In `http{}` section set up the following location for clients to play HLS.
                 types {
                     application/vnd.apple.mpegurl m3u8;
                 }
-                alias /tmp/hls;
+                root /tmp;
             }
         }
     }
@@ -985,8 +985,8 @@ In `http{}` section set up the following location for clients to play HLS.
 Syntax: `hls_path path`  
 Context: rtmp, server, application  
 
-Sets HLS playlist and fragment directory. This directory should
-exist before NGINX starts.
+Sets HLS playlist and fragment directory. If the directory does not
+exist it will be created.
 
 #### hls_fragment
 Syntax: `hls_fragment time`  
@@ -1134,6 +1134,74 @@ from the start of playlist. When in `event` mode make sure playlist length
 is enough for the whole event. Default is `live`;
 
     hls_type event;
+
+
+## MPEG-DASH
+
+#### dash
+Syntax: `dash on|off`  
+Context: rtmp, server, application  
+
+Toggles MPEG-DASH on the application.
+
+    dash on;
+    dash_path /tmp/dash;
+    dash_fragment 15s;
+
+In `http{}` section set up the following location for clients to play MPEG-DASH.
+
+    http {
+        ...
+        server {
+            ...
+            location /dash {
+                root /tmp;
+            }
+        }
+    }
+
+#### dash_path
+Syntax: `dash_path path`  
+Context: rtmp, server, application  
+
+Sets MPEG-DASH playlist and fragment directory. If the directory does not
+exists it will be created.
+
+#### dash_fragment
+Syntax: `dash_fragment time`  
+Context: rtmp, server, application  
+
+Sets MPEG-DASH fragment length. Defaults to 5 seconds.
+
+#### dash_playlist_length
+Syntax: `dash_playlist_length time`  
+Context: rtmp, server, application  
+
+Sets MPEG-DASH playlist length. Defaults to 30 seconds.
+
+    dash_playlist_length 10m;
+
+#### dash_nested
+Syntax: `dash_nested on|off`  
+Context: rtmp, server, application  
+
+Toggles MPEG-DASH nested mode. In this mode a subdirectory
+of `dash_path` is created for each stream. Playlist
+and fragments are created in that subdirectory.
+Default is off.
+
+    dash_nested on;
+
+#### dash_cleanup
+Syntax: `dash_cleanup on|off`  
+Context: rtmp, server, application  
+
+Toggles MPEG-DASH cleanup. By default the feature is on.
+In this mode nginx cache manager process removes old
+MPEG-DASH fragments and playlists from MPEG-DASH directory.
+Init fragments are deleted after stream manifest is deleted.
+
+    dash_cleanup off;
 
 ## Access log
 
