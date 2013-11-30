@@ -1,3 +1,5 @@
+this article is not finished yet
+
 ## RTMP
 RTMP is a proprietary protocol developed by Adobe (Macromedia) for use
 in flash player. Until 2009 it had no public specification.
