@@ -977,6 +977,7 @@ In `http{}` section set up the following location for clients to play HLS.
                     application/vnd.apple.mpegurl m3u8;
                 }
                 root /tmp;
+                add_header Cache-Control no-cache;
             }
         }
     }
@@ -1156,6 +1157,7 @@ In `http{}` section set up the following location for clients to play MPEG-DASH.
             ...
             location /dash {
                 root /tmp;
+                add_header Cache-Control no-cache;
             }
         }
     }
