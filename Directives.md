@@ -615,6 +615,9 @@ Unindexed FLVs are played with seek/pause disabled
 (restart-only mode). Use FLV indexer (for example, yamdi)
 for indexing.
 
+If you play FLVs recorded with the `record` directive please do not
+forget to index them before playing. They are created unindexed.
+
 Mp4 files can only be played if both video and audio codec are supported
 by RTMP. The most common case is H264/AAC.
 
