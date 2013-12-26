@@ -164,6 +164,16 @@ and accepting input. Supported are
 * descriptor redirects like `1>&2`
 * input `<file`
 
+Make sure there's no space between redirection character and stream name/number.
+
+You can specify full path to the command to execute or short command name. In the latter
+case binary is looked up in directories specified by the `PATH` environment variable.
+By default nginx clears the environment which will usually make rtmp module run only binaries
+located in standard directories like `/bin` and `/usr/bin`. To make this always work
+please keep the original `PATH` variable value with the following nginx directive
+
+    env PATH; 
+
 The following ffmpeg call transcodes incoming stream to HLS-ready
 stream (H264/AAC). FFmpeg should be compiled with libx264 & libfaac support
 for this example to work.
