@@ -170,7 +170,7 @@ You can specify full path to the command to execute or short command name. In th
 case binary is looked up in directories specified by the `PATH` environment variable.
 By default nginx clears the environment which will usually make rtmp module run only binaries
 located in standard directories like `/bin` and `/usr/bin`. To make this always work
-please keep the original `PATH` variable value with the following nginx directive
+please keep the original `PATH` variable value with the following nginx directive.
 
     env PATH; 
 
