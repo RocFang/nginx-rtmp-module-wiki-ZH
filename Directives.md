@@ -1257,6 +1257,7 @@ formats. Several variables are supported within log format:
 * `time_local` - local time at the end of client connection
 * `session_time` - connection duration in seconds
 * `session_readable_time` - connection duration in human-readable format
+* `msec` - current unix timestamp in SEC.MSEC format
 
 Default log format has the name `combined`. Here's the definition of this format
 
