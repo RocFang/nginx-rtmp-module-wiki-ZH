@@ -1,5 +1,5 @@
 Control module is HTTP module which makes it possible to control rtmp module from outside using HTTP protocol. Here's an example of how to enable control.
-```
+
     http {
     ...
         server {
@@ -11,7 +11,7 @@ Control module is HTTP module which makes it possible to control rtmp module fro
             }
          }
     }
-```
+
 There are several sub-modules within control module each controlling a different feature.
 # Record
 This sub-module starts and stops recordings created with _manual_ flag.
