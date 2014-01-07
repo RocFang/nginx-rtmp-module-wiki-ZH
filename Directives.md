@@ -941,7 +941,7 @@ syntax: `notify_relay_redirect on|off`
 context: rtmp, server, application  
 
 Enables local stream redirect for `on_play` and `on_publish` remote
-redirects. New stream name is RTMP URL used for remote redirect.
+redirects. New stream name is MD5 hash of RTMP URL used for remote redirect.
 Default is off.
 
     notify_relay_redirect on;
