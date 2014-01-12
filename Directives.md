@@ -328,14 +328,21 @@ Context: rtmp, server, application, recorder
 
 Specifies external command with arguments to be executed when
 recording is finished. Substitution of `exec_publish` are supported here
-as well as additional variables `path` and `recorder`.
+as well as additional variables 
+* `recorder` - recorder name
+* `path` - recorded file path (`/tmp/rec/mystream-1389499351.flv`)
+* `filename` - path with directory omitted (`mystream-1389499351.flv`)
+* `basename` - file name with extension omitted (`mystream-1389499351`)
+* `dirname` - directory path (`/tmp/rec`)
+
+Examples
 
     # track client info
     exec_play bash -c "echo $addr $pageurl >> /tmp/clients";
     exec_publish bash -c "echo $addr $flashver >> /tmp/publishers";
 
     # convert recorded file to mp4 format
-    exec_record_done ffmpeg -y -i $path -acodec libmp3lame -ar 44100 -ac 1 -vcodec libx264 $path.mp4;
+    exec_record_done ffmpeg -y -i $path -acodec libmp3lame -ar 44100 -ac 1 -vcodec libx264 $dirname/$basename.mp4;
 
 ## Live
 
