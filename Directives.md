@@ -854,6 +854,7 @@ application/x-www-form-urlencoded MIME type. The following arguments are
 passed to caller:
 * call=play
 * addr - client IP address
+* clientid - nginx client id (displayed in log and stat)
 * app - application name
 * flashVer - client flash version
 * swfUrl - client swf url
