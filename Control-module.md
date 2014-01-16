@@ -54,7 +54,8 @@ Use the following commands to start and stop recording
 This sub-module provides a simple way to drop client connection.
 Syntax:
 
-    http://server.com/control/drop/publisher|subscriber|client?srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID
+    http://server.com/control/drop/publisher|subscriber|client?
+    srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID
 
 * srv, app, name - the same as above
 * addr - optional client address (the same as returned by rtmp_stat)
@@ -73,7 +74,8 @@ Examples
 Redirect play/publish client to a new stream.
 Syntax:
 
-    http://server.com/control/redirect/publisher|subscriber|client?srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID&newname=NEWNAME
+    http://server.com/control/redirect/publisher|subscriber|client?
+    srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID&newname=NEWNAME
 
 * srv, app, name, addr, clients - the same as above
 * newname - new stream name to redirect to
