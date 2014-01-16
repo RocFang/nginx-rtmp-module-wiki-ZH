@@ -73,6 +73,7 @@ Examples
 Redirect play/publish client to a new stream.
 Syntax:
 
-    http://server.com/control/redirect/publisher|subscriber|client?srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID
+    http://server.com/control/redirect/publisher|subscriber|client?srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID&newname=NEWNAME
 
 * srv, app, name, addr, clients - the same as above
+* newname - new stream name to redirect to
