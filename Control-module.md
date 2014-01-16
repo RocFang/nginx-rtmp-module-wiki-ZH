@@ -54,7 +54,7 @@ Use the following commands to start and stop recording
 This sub-module provides a simple way to drop client connection.
 Syntax:
 
-    http://server.com/control/drop/publisher|subcriber|client?srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID
+    http://server.com/control/drop/publisher|subscriber|client?srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID
 
 * srv, app, name - the same as above
 * addr - optional client address (the same as returned by rtmp_stat)
