@@ -54,10 +54,11 @@ Use the following commands to start and stop recording
 This sub-module provides a simple way to drop client connection.
 Syntax:
 
-    http://server.com/control/drop/publisher|client?srv=SRV&app=APP&name=NAME&addr=ADDR
+    http://server.com/control/drop/publisher|subcriber|client?srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID
 
 * srv, app, name - the same as above
 * addr - optional client address (the same as returned by rtmp_stat)
+* clientid - optional nginx client id (displayed in log and stat) 
 
 The first method ```drop/publisher``` drops publisher connection. The second ```drop/client``` drops every connection matching ```addr``` argument or all clients (including publisher) if ```addr``` is not specified.
 
@@ -66,3 +67,12 @@ Examples
     curl http://localhost:8080/control/drop/publisher?app=myapp&name=mystream
     curl http://localhost:8080/control/drop/client?app=myapp&name=mystream
     curl http://localhost:8080/control/drop/client?app=myapp&name=mystream&addr=192.168.0.1
+    curl http://localhost:8080/control/drop/client?app=myapp&name=mystream&clientid=1
+
+# Redirect
+Redirect play/publish client to a new stream.
+Syntax:
+
+    http://server.com/control/redirect/publisher|subscriber|client?srv=SRV&app=APP&name=NAME&addr=ADDR&clientid=CLIENTID
+
+* srv, app, name, addr, clients - the same as above
