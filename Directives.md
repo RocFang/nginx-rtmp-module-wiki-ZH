@@ -110,6 +110,15 @@ very large which can be a problem for server stability. Default value
 
     max_message 1M;
 
+### buflen
+syntax: `buflen time`  
+context: rtmp, server  
+
+Sets default buffer length. Usually client sends RTMP `set_buflen` command
+before playing and resets this setting. Default is `1000 ms`.
+
+    buflen 5s;
+
 #### out_queue
 
 #### out_cork
