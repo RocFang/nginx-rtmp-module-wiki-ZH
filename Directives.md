@@ -1101,6 +1101,18 @@ Default is sequential.
 
     hls_fragment_naming system;
 
+### hls_fragment_naming_granularity
+Syntax: `hls_fragment_naming_granularity number`  
+Context: rtmp, server, application  
+
+Sets granularity for hls fragment ids. If above zero, changes ids
+to divide the provided value. Default is zero.
+
+    # use system time rounded to 500ms as fragment names
+    hls_fragment_naming system;
+    hls_fragment_naming_granularity 500;
+
+
 #### hls_fragment_slicing
 Syntax: `hls_fragment_slicing plain|aligned`  
 Context: rtmp, server, application  
