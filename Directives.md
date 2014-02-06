@@ -228,7 +228,7 @@ in exec-family directives. The only option supported now is `name` option.
 
     application myapp {
         live on;
-        exec_options on
+        exec_options on;
         exec_pull ffmpeg -i http://example.com/tv1.ts -c copy -f flv rtmp://localhost/$app/$name name=mystream;
         exec_pull ffmpeg -i http://another.example.com/video_plus.ts -c copy -f flv rtmp://localhost/$app/$name name=anotherstream;
     }
