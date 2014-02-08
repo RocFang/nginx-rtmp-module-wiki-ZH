@@ -404,6 +404,8 @@ key frame with all other data following it. However this usually
 increases connection delay. You can tune keyframe interval in your
 encoder to reduce the delay.
 
+Recent versions of IE need this option to be enabled for normal playback.
+
     wait_video on;
 
 #### publish_notify
