@@ -912,7 +912,11 @@ syntax: `on_record_done url`
 context: rtmp, server, application, recorder  
   
 Set record_done callback. In addition to common HTTP callback
-variables it receives recorded file path.
+variables it receives the following values
+* recorder - recorder name in config or empty string for inline recorder
+* path - recorded file path
+
+Example
 
     on_record_done http://example.com/recorded;
 
