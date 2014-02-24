@@ -50,6 +50,8 @@ Use the following commands to start and stop recording
     curl http://localhost:8080/control/record/start?app=myapp&name=mystream&rec=rec1
     curl http://localhost:8080/control/record/stop?app=myapp&name=mystream&rec=rec1
 
+if the record start/stop request returns nothing sometimes, you should check if you use multi workors. one workor works great. 
+
 # Drop
 This sub-module provides a simple way to drop client connection.
 Syntax:
