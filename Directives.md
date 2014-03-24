@@ -501,7 +501,7 @@ Sets record file suffix. Defaults to '.flv'.
 Record suffix can be a pattern in `strftime` format.
 The following directive
 
-    record_suffix -%d-%b-%y-%T.flv
+    record_suffix -%d-%b-%y-%T.flv;
 
 will produce files of the form `mystream-24-Apr-13-18:23:38.flv`.
 All supported `strftime` format options can be found on 
@@ -626,7 +626,7 @@ recorder name (empty for default recorder). Off by default.
 Syntax: `play dir|http://loc [dir|http://loc]*`  
 Context: rtmp, server, application  
 
-PLay flv or mp4 file from specified directory or HTTP location.
+Play flv or mp4 file from specified directory or HTTP location.
 If the argument is prefixed with `http://` then it is assumed
 that file should be downloaded from remote http location before
 playing. Note playing is not started until the whole file is
