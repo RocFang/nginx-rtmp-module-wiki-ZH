@@ -1305,7 +1305,7 @@ Default log format has the name `combined`. Here's the definition of this format
 Syntax: `max_connections number`  
 Context: rtmp, server, application  
 
-Sets maximum number of connections for rtmp engine. Off by refault.
+Sets maximum number of connections for rtmp engine. Off by default.
 
     max_connections 100;
 
