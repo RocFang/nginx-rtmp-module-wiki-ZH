@@ -15,7 +15,7 @@ Declares RTMP server instance
     }
 
 #### listen
-syntax: `listen (addr[:port]|port|unix:path) [bind]  [ipv6only=on|off] [so_keepalive=on|off|keepidle:keepintvl:keepcnt]`  
+syntax: `listen (addr[:port]|port|unix:path) [bind]  [ipv6only=on|off] [so_keepalive=on|off|keepidle:keepintvl:keepcnt|proxy_protocol]`  
 context: server  
 
 Adds listening socket to NGINX for accepting RTMP connections
