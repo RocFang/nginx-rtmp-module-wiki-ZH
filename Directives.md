@@ -432,7 +432,7 @@ Syntax: `sync timeout`
 Context: rtmp, server, application  
 
 Synchronize audio and video streams. If subscriber bandwidth
-is not enough to receive data at ublisher rate some frames are
+is not enough to receive data at publisher rate, some frames are
 dropped by server. This leads to synchronization problem. When 
 timestamp difference exceeds the value specified as `sync` argument an 
 absolute frame is sent fixing that. Default is 300ms.
