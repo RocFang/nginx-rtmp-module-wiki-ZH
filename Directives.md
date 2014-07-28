@@ -446,7 +446,7 @@ Context: rtmp, server, application
 If enabled nginx-rtmp sends NetStream.Play.Start and NetStream.Play.Stop
 to each subscriber every time publisher starts or stops publishing. If disabled
 each subscriber receives those notifications only at the start and end of
-playback. Default is on.
+playback. Default is off.
 
     play_restart off;
 
