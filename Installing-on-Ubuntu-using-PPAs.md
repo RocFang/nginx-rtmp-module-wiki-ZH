@@ -13,6 +13,9 @@
 Edit the rules and at then end of the add-modules configuration string add
 `--add-module=/usr/src/nginx/nginx-rtmp-module \`
 
+If installing for the first time build nginx dependancies.
+`sudo apt-get build-dep nginx`
+
 `dpkg-buildpackage -b`
 
 (wait for a while while it builds... a really long while... like you might want to go grab a meal)
