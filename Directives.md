@@ -1246,9 +1246,9 @@ Context: rtmp, server, application
 
 Sets the directory where auto-generated HLS keys are saved.
 Key files have `.key` extension and pseudo-random 16-byte content
-created with the OpenSSL `RAND_bytes` routine.
-If the directory does not exist it will be created.
-By default `hls_path` directory is used for key files.
+created with the OpenSSL `RAND_bytes()` routine.
+If the directory does not exist it's created in runtime.
+By default, `hls_path` directory is used for key files.
 Remember however you should normally restrict access to the key files which
 is easier when these files are stored separately from playlist and fragments.
 
