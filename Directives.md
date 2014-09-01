@@ -1224,6 +1224,7 @@ Context: rtmp, server, application
 Sets the number of HLS fragments encrypted with the same key.
 Zero means only one key is created at the publish start 
 and all fragments within the session are encrypted with this key.
+Default is zero.
 
     hls_fragments_per_key 10;
 
