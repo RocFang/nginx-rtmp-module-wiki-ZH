@@ -1225,7 +1225,7 @@ Example configuration using the HLS encryption.
         server {
             listen 1935;
 
-            application {
+            application myapp {
                 live on;
 
                 hls on;
