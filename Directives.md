@@ -1193,6 +1193,50 @@ Off by default.
 
     hls_keys on;
 
+Example configuration using the HLS encryption.
+
+    ...
+
+    http {
+        ...
+        server {
+            listen 443;
+            server_name example.com;
+
+            ssl_certificate /var/ssl/example.com.cert;
+            ssl_certificate_key /var/ssl/example.com.key;
+
+            location /keys {
+                root /tmp;
+            }
+        }
+        server {
+            listen 80;
+            server_name example.com;
+
+            location /hls {
+                root /tmp;
+            }
+        }
+    }
+
+    rtmp {
+        server {
+            listen 1935;
+            application {
+                live on;
+
+                hls on;
+                hls_path /tmp/hls;
+
+                hls_keys on;
+                hls_key_path /tmp/keys;
+                hls_key_url https://example.com/keys/;
+                hls_fragments_per_key 10;
+            }
+        }
+    }
+
 #### hls_key_path
 Syntax: `hls_key_path path`  
 Context: rtmp, server, application  
