@@ -1249,7 +1249,7 @@ Key files have `.key` extension and pseudo-random 16-byte content
 created with the OpenSSL `RAND_bytes()` routine.
 If the directory does not exist it's created in runtime.
 By default, `hls_path` directory is used for key files.
-Remember however you should normally restrict access to the key files which
+Remember however you should normally restrict access to key files which
 is easier when these files are stored separately from playlist and fragments.
 
     hls_key_path /tmp/keys;
