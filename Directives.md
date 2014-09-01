@@ -1193,14 +1193,15 @@ Off by default.
 
     hls_keys on;
 
-Example configuration using the HLS encryption.
+Here's the example configuration using the HLS encryption. This configuration
+requires that nginx is built with `--with-http_ssl_module` for https support.
 
     ...
 
     http {
         ...
         server {
-            listen 443;
+            listen 443 ssl;
             server_name example.com;
 
             ssl_certificate /var/ssl/example.com.cert;
