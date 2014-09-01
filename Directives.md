@@ -1244,8 +1244,13 @@ requires that nginx is built with `--with-http_ssl_module` for https support.
 Syntax: `hls_key_path path`  
 Context: rtmp, server, application  
 
-Sets HLS key directory. If the directory does not exist it will be created.
+Sets the directory where auto-generated HLS keys are saved.
+Key files have `.key` extension and pseudo-random 16-byte content
+created with the OpenSSL `RAND_bytes` routine.
+If the directory does not exist it will be created.
 By default `hls_path` directory is used for key files.
+Remember however you should normally restrict access to the key files which
+is easier when these files are stored separately from playlist and fragments.
 
     hls_key_path /tmp/keys;
 
