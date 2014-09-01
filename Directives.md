@@ -1210,6 +1210,7 @@ Example configuration using the HLS encryption.
                 root /tmp;
             }
         }
+
         server {
             listen 80;
             server_name example.com;
@@ -1223,6 +1224,7 @@ Example configuration using the HLS encryption.
     rtmp {
         server {
             listen 1935;
+
             application {
                 live on;
 
