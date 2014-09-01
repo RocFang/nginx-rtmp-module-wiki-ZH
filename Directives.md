@@ -1213,7 +1213,7 @@ as the playlist. Empty by default.
 
     hls_key_url https://myserver.com/keys/;
 
-Example playlist with the above setting
+Example playlist entry with the above setting
 
     #EXT-X-KEY:METHOD=AES-128,URI="https://myserver.com/keys/337.key",IV=0x00000000000000000000000000000151
 
@@ -1222,8 +1222,8 @@ Syntax: `hls_fragments_per_key value`
 Context: rtmp, server, application  
 
 Sets the number of HLS fragments encrypted with the same key.
-Zero means only one key will be created at the publish start 
-and all fragments within the session will be encrypted with this key.
+Zero means only one key is created at the publish start 
+and all fragments within the session are encrypted with this key.
 
     hls_fragments_per_key 10;
 
