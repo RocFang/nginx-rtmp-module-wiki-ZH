@@ -1200,7 +1200,6 @@ Context: rtmp, server, application
 Sets HLS key directory. If the directory does not exist it will be created.
 By default `hls_path` directory is used for key files.
 
-    hls_keys on;
     hls_key_path /tmp/keys;
 
 #### hls_key_url
