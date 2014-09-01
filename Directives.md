@@ -1184,6 +1184,48 @@ is enough for the whole event. Default is `live`;
 
     hls_type event;
 
+#### hls_keys
+Syntax: `hls_keys on|off`  
+Context: rtmp, server, application  
+
+Enables HLS encryption. AES-128 method is used to encrypt the whole HLS fragments.
+Off by default.
+
+    hls_keys on;
+
+#### hls_key_path
+Syntax: `hls_key_path path`  
+Context: rtmp, server, application  
+
+Sets HLS key directory. If the directory does not exist it will be created.
+By default `hls_path` directory is used for key files.
+
+    hls_keys on;
+    hls_key_path /tmp/keys;
+
+#### hls_key_url
+Syntax: `hls_key_url url`  
+Context: rtmp, server, application  
+
+Sets url for HLS key file entries. When empty those
+items have no prefix and keys are assumed to be at the same location
+as the playlist. Empty by default.
+
+    hls_key_url https://myserver.com/keys/;
+
+Example playlist with the above setting
+
+    #EXT-X-KEY:METHOD=AES-128,URI="https://myserver.com/keys/337.key",IV=0x00000000000000000000000000000151
+
+#### hls_fragments_per_key
+Syntax: `hls_fragments_per_key value`  
+Context: rtmp, server, application  
+
+Sets the number of HLS fragments encrypted with the same key.
+Zero means only one key will be created at the publish start 
+and all fragments within the session will be encrypted with this key.
+
+    hls_fragments_per_key 10;
 
 ## MPEG-DASH
 
