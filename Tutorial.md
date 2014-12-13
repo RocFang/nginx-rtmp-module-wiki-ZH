@@ -82,6 +82,7 @@ no problems with the module are:
 * [JWPlayer](http://www.longtailvideo.com/)
 * [FlowPlayer](http://flowplayer.org/)
 * [Strobe Media Playback](http://www.osmf.org/strobe_mediaplayback.html)
+* [Clappr](https://github.com/globocom/clappr)
 
 Old versions of JWPlayer (<=4.4) supported capturing video
 from webcam. You can find that version in test/ subdirectory.
