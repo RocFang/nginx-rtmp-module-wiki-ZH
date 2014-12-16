@@ -22,11 +22,6 @@ and configure nginx this way:
 
 `./configure --add-module=/path/to/nginx-rtmp-module`
 
-HLS support is provided by a separate module. To add HLS 
-use the following configure line:
-
-`./configure --add-module=/path/to/nginx-rtmp-module --add-module=/path/to/nginx-rtmp-module/hls`
-
 Then `make` and `make install`.
 
 ## Configuration
