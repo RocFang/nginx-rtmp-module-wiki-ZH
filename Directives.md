@@ -1136,6 +1136,9 @@ In `http{}` section set up the following location for clients to play HLS.
                 }
                 root /tmp;
                 add_header Cache-Control no-cache;
+
+                # To avoid issues with cross-domain HTTP requests (e.g. during development)
+                add_header Access-Control-Allow-Origin *;
             }
         }
     }
@@ -1422,6 +1425,9 @@ In `http{}` section set up the following location for clients to play MPEG-DASH.
             location /dash {
                 root /tmp;
                 add_header Cache-Control no-cache;
+
+                # To avoid issues with cross-domain HTTP requests (e.g. during development)
+                add_header Access-Control-Allow-Origin *;
             }
         }
     }
