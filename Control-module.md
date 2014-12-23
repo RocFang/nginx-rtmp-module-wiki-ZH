@@ -47,8 +47,8 @@ Publish the stream with the following command
 
 Use the following commands to start and stop recording
 
-    curl http://localhost:8080/control/record/start?app=myapp&name=mystream&rec=rec1
-    curl http://localhost:8080/control/record/stop?app=myapp&name=mystream&rec=rec1
+    curl "http://localhost:8080/control/record/start?app=myapp&name=mystream&rec=rec1"
+    curl "http://localhost:8080/control/record/stop?app=myapp&name=mystream&rec=rec1"
 
 if the record start/stop request returns nothing sometimes, you should check if you use multi workers. one worker works great. 
 
