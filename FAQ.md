@@ -13,3 +13,9 @@ Currently HLS clients do not trigger any events. You cannot pull or exec when HL
 To make the files seekable add flv metadata with external software like yamdi, flvmeta or ffmpeg.
 
     exec_record_done yamdi -i $path -o /var/videos/$basename;
+
+####Published stream is missing from stats page after some time and clients fail to connect
+
+Check if you use multiple workers in nginx (`worker_processes`). In such case you have to enable:
+
+    rtmp_auto_push on;
