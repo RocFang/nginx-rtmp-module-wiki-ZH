@@ -154,7 +154,7 @@ Streaming and encoding audio (AAC) and video (H264), need `libx264` and `libfaac
 
     ffmpeg -re -i /var/Videos/test.mp4 -c:v libx264 -c:a libfaac -ar 44100 -ac 1 -f flv rtmp://localhost/myapp/mystream
 
-Streaming and encoding audio (MP3) and video (H264), need `libx264` abd `libmp3lame`
+Streaming and encoding audio (MP3) and video (H264), need `libx264` and `libmp3lame`
 
     ffmpeg -re -i /var/Videos/test.mp4 -c:v libx264 -c:a libmp3lame -ar 44100 -ac 1 -f flv rtmp://localhost/myapp/mystream
 
