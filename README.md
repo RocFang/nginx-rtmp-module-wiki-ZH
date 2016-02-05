@@ -9,7 +9,7 @@
 ### Wiki manual
 
   * EN: https://github.com/arut/nginx-rtmp-module/wiki/Directives
-  * ZH: https://github.com/RocFang/nginx-rtmp-module-wiki-ZH/Directives.md
+  * 中文: [配置指令集](/Directives.md)
 
 ### Google group
 
