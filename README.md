@@ -8,7 +8,8 @@
 
 ### Wiki manual
 
-  https://github.com/arut/nginx-rtmp-module/wiki/Directives
+  * EN: https://github.com/arut/nginx-rtmp-module/wiki/Directives
+  * ZH: https://github.com/RocFang/nginx-rtmp-module-wiki-ZH/Directives.md
 
 ### Google group
 
