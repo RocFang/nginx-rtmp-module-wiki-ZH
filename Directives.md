@@ -498,7 +498,7 @@ Context: rtmp, server, application
 
     meta copy;
 
-注:回调为 ngx_rtmp_codec_meta_data。
+注:回调为 ngx_rtmp_codec_meta_data。ffmpeg 推流时，对应的 amf 指令为 @setDataFrame。
 
 #### interleave
 Syntax: `interleave on|off`  
