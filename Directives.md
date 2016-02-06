@@ -491,10 +491,10 @@ Context: rtmp, server, application
 
 设置发送 metadata 的模式，一共有三种模式:
 * on: 该模式下，发送给订阅者的 metadata 并非原始 metadata，而是由服务端按照内部预定义的字段,例如宽度高度等，重新组装的 metadata。
-* copy: 该模式下，发送给订阅者的 metadata 就是发布者发布的metadata。
+* copy: 该模式下，发送给订阅者的 metadata 就是发布者发布的 metadata。
 * off: 该模式下，不向订阅者发送 metadata。
 
-默认模式为 on, 即向订阅者发送按照预定义字段重新组装生成的metadata。
+默认模式为 on, 即向订阅者发送按照预定义字段重新组装生成的 metadata。
 
     meta copy;
 
