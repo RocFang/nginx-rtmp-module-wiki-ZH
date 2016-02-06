@@ -17,10 +17,6 @@
 
   https://groups.google.com/group/nginx-rtmp-ru (Russian)
 
-### Donation page (Paypal etc)
-
-  http://arut.github.com/nginx-rtmp-module/
-
 ### Features
 
 * RTMP/HLS/MPEG-DASH live streaming
@@ -76,14 +72,6 @@ For building debug version of nginx add `--with-debug`
     ./configure --add-module=/path/to-nginx/rtmp-module --with-debug
 
 [Read more about debug log](https://github.com/arut/nginx-rtmp-module/wiki/Debug-log)
-
-### Windows limitations
-
-Windows support is limited. These features are not supported
-
-* execs
-* static pulls
-* auto_push
 
 ### RTMP URL format
 
