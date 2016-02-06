@@ -498,6 +498,8 @@ Context: rtmp, server, application
 
     meta copy;
 
+注:回调为 ngx_rtmp_codec_meta_data。
+
 #### interleave
 Syntax: `interleave on|off`  
 Context: rtmp, server, application  
