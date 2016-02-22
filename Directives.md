@@ -481,7 +481,7 @@ Examples
 Syntax: `live on|off`  
 Context: rtmp, server, application  
 
-Toggles live mode i.e. one-to-many broadcasting.
+控制 live 模式的开关, live 模式即为一对多广播.默认为off.
 
     live on;
 
