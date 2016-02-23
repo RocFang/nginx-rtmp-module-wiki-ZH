@@ -576,7 +576,15 @@ playback. Default is off.
 
 #### idle_streams
 Syntax: `idle_streams on|off`  
-Context: rtmp, server, application  
+Context: rtmp, server, application
+
+指令所属模块:ngx_rtmp_live_module.
+指令功能：
+当设置为 off 的时候：
+* nginx-rtmp 服务器会阻止订阅者连接到空闲或不存在(idle/nonexistent)的直播流
+* 当发布者断开与 nginx-rtmp 服务器的连接时，nginx-rtmp 服务器会断开所有订阅者的连接
+
+默认值: on
 
 If disabled nginx-rtmp prevents subscribers from connecting to idle/nonexistent
 live streams and disconnects all subscribers when stream publisher disconnects.
