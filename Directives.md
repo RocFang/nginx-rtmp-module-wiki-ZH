@@ -222,14 +222,13 @@ this value the lower CPU overhead. This value cannot be less than 128.
 #### max_queue
 
 #### max_message
-syntax: `max_queue value`  
+syntax: `max_message value`  
 context: rtmp, server  
 
-Maximum size of input data message. All input data comes split into
-messages (and further in chunks). A partial message is kept in memory while
-waiting for it to complete. In theory incoming message can be
-very large which can be a problem for server stability. Default value
-1M is enough for many cases.
+指令所属模块: ngx_rtmp_core_module
+指令作用：设置可接收的单个 message 大小的最大值。所有的输入数据会被分割为多个 message(在底层会被进而分割为多个 chunks).
+一个不完整的 message 会保留在内存中等待接收完整。理论上一个输入的 message 可以非常大，这会对服务器的稳定性造成影响。默认值是
+1M，在大多数情况下是够用的。
 
     max_message 1M;
 
