@@ -579,6 +579,7 @@ Syntax: `idle_streams on|off`
 Context: rtmp, server, application
 
 指令所属模块:ngx_rtmp_live_module.
+
 指令功能：
 当设置为 off 的时候：
 * nginx-rtmp 服务器会阻止订阅者连接到空闲或不存在(idle/nonexistent)的直播流
