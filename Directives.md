@@ -586,10 +586,6 @@ Context: rtmp, server, application
 
 默认值: on
 
-If disabled nginx-rtmp prevents subscribers from connecting to idle/nonexistent
-live streams and disconnects all subscribers when stream publisher disconnects.
-Default is on.
-
     idle_streams off;
 
 ## Record
