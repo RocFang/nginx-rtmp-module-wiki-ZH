@@ -193,9 +193,8 @@ See ping description above.
 syntax: `max_streams value`  
 context: rtmp, server  
 
-Sets maximum number of RTMP streams. Data streams are multiplexed into
-a single data stream. Different channels are used for sending commands,
-audio, video etc. Default value is 32 which is usually ok for many cases.
+设置 RTMP 逻辑流的最大个数. 多个数据流会整合到一个单一的数据流里.一个 RTMP 流是一个逻辑通道，用来传输不同类型的命令、音视频数据等。
+默认的逻辑通道个数为32，这个值在大多数情况下都可以满足需求。
 
     max_streams 32;
         
