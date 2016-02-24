@@ -555,11 +555,7 @@ connection is in publish mode (after sending `publish` command).
 Syntax: `sync timeout`  
 Context: rtmp, server, application  
 
-Synchronize audio and video streams. If subscriber bandwidth
-is not enough to receive data at publisher rate, some frames are
-dropped by server. This leads to synchronization problem. When 
-timestamp difference exceeds the value specified as `sync` argument an 
-absolute frame is sent fixing that. Default is 300ms.
+如果订阅者带宽不够，一些帧会被服务器丢弃，这将导致同步的问题，sync 指令针对该情况对音视频流进行同步操作。如果时间戳的差异超过了 sync 指令配置的值，服务器会向订阅者发送一个绝对帧来解决该问题。该指令配置的默认值为 300ms.
 
     sync 10ms;
 
