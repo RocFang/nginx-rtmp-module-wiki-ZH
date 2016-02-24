@@ -522,13 +522,9 @@ Makes video stream start with a key frame. Defaults to off.
 Syntax: `wait_video on|off`  
 Context: rtmp, server, application  
 
-Disable audio until first video frame is sent. Defaults to off.
-Can be combined with `wait_key` to make client receive video
-key frame with all other data following it. However this usually
-increases connection delay. You can tune keyframe interval in your
-encoder to reduce the delay.
+如果 `wait_video` 开关打开之后，在第一个视频帧发送之前，不会向订阅者发送音频帧。默认关闭。可以和 `wait_key` 指令配合使用，使得订阅者接收的音视频数据以一个视频关键帧开始。但这种做法通常会增加连接延时，这个问题可以通过在编码侧调整视频关键帧间隙大小来解决。
 
-Recent versions of IE need this option to be enabled for normal playback.
+新版本的 IE 在回放时，需要开启此功能。
 
     wait_video on;
 
