@@ -476,7 +476,7 @@ Examples
     # convert recorded file to mp4 format
     exec_record_done ffmpeg -y -i $path -acodec libmp3lame -ar 44100 -ac 1 -vcodec libx264 $dirname/$basename.mp4;
 
-## Live
+## ngx_rtmp_live_module
 
 #### live
 Syntax: `live on|off`  
@@ -505,9 +505,8 @@ Context: rtmp, server, application
 Syntax: `interleave on|off`  
 Context: rtmp, server, application  
 
-Toggles interleave mode. In this mode audio and video
-data is transmitted on the same RTMP chunk stream.
-Defaults to off.
+该指令控制 interleave 模式的开关。当打开 interleave 模式时，视频和音频数据在同一个 RTMP chunk stream 中传输。当关闭时，在两个不同
+的 RTMP chunk stream 中传输，其中，音频数据的 chunk stream id 为6(NGX_RTMP_CSID_AUDIO),视频数据的 chunk stream id 为7（NGX_RTMP_CSID_VIDEO）。默认关闭，即音视频数据在不同的 chunk stream 中传输。
 
     interleave on;
 
