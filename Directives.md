@@ -514,7 +514,7 @@ Context: rtmp, server, application
 Syntax: `wait_key on|off`  
 Context: rtmp, server, application  
 
-Makes video stream start with a key frame. Defaults to off.
+当 `wait_key` 开启后，使得订阅者接收到的视频数据都以一个关键帧开始。该功能默认关闭。
 
     wait_key on;
 
