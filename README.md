@@ -1,23 +1,23 @@
-# NGINX-based Media Streaming Server
-## nginx-rtmp-module
+# 基于 Nginx 的流媒体服务器
 
+## nginx-rtmp 模块
 
-### Project blog
+### 项目博客
 
   http://nginx-rtmp.blogspot.com
 
-### Wiki manual
+### 配置指令说明
 
-  * EN: https://github.com/arut/nginx-rtmp-module/wiki/Directives
+  * 英文: https://github.com/arut/nginx-rtmp-module/wiki/Directives
   * 中文: [配置指令集](/Directives.md)
 
-### Google group
+### Google 讨论组
 
-  https://groups.google.com/group/nginx-rtmp
+  * 英文: https://groups.google.com/group/nginx-rtmp
 
-  https://groups.google.com/group/nginx-rtmp-ru (Russian)
+  * 俄文: https://groups.google.com/group/nginx-rtmp-ru
 
-### Features
+### 特性
 
 * RTMP/HLS/MPEG-DASH live streaming
 
