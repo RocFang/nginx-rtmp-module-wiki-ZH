@@ -540,10 +540,7 @@ Context: rtmp, server, application
 Syntax: `drop_idle_publisher timeout`  
 Context: rtmp, server, application  
 
-本指令设置了一个超时时间，当发布者与服务器的连接处于 publish 模式下，闲置的时间超过这个时间后，服务器会关闭该连接。该功能默认关闭。
-
-* 闲置：是指没有音视频数据传输。
-* publish 模式：当发布者发送完 `publish` 指令后即为 publish 模式。 
+本指令设置了一个超时时间，当发布者与服务器的连接处于 publish 模式下，闲置的时间超过这个时间后，服务器会关闭该连接。该功能默认关闭。所谓闲置是指没有音视频数据传输，所谓publish 模式,当发布者发送完 `publish` 指令后即为 publish 模式。 
 
     drop_idle_publisher 10s;
 
