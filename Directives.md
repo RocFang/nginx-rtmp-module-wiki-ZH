@@ -545,6 +545,7 @@ Context: rtmp, server, application
 * 闲置：是指没有音视频数据传输。
 * publish 模式：当发布者发送完 `publish` 指令后即为 publish 模式。
 
+
     drop_idle_publisher 10s;
 
 #### sync
