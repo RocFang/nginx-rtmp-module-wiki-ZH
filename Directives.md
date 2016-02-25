@@ -532,8 +532,7 @@ Context: rtmp, server, application
 Syntax: `publish_notify on|off`  
 Context: rtmp, server, application  
 
-Send `NetStream.Play.PublishNotify` and `NetStream.Play.UnpublishNotify` to
-subscribers. Defaults to off.
+当 `publish_notify` 开关打开时，会向订阅者发送 `NetStream.Play.PublishNotify` 和 `NetStream.Play.UnpublishNotify` 状态。本开关默认关闭。
 
     publish_notify on;
 
@@ -541,9 +540,10 @@ subscribers. Defaults to off.
 Syntax: `drop_idle_publisher timeout`  
 Context: rtmp, server, application  
 
-Drop publisher connection which has been idle (no audio/video data)
-within specified time. Default is off. Note this only works when
-connection is in publish mode (after sending `publish` command).
+本指令设置了一个超时时间，当发布者与服务器的连接处于 publish 模式下，闲置的时间超过这个时间后，服务器会关闭该连接。该功能默认关闭。
+
+* 闲置：是指没有音视频数据传输。
+* publish 模式：当发布者发送完 `publish` 指令后即为 publish 模式。
 
     drop_idle_publisher 10s;
 
