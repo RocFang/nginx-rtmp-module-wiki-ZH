@@ -1,8 +1,8 @@
 Table of Contents
 =================
-
-* [ngx_rtmp_core_module](#core)
+* [ngx_rtmp_module](#ngx_rtmp_module)
     * [rtmp](#rtmp)
+* [ngx_rtmp_core_module](#core)
     * [server](#server)
     * [listen](#listen)
     * [application](#application)
@@ -120,12 +120,13 @@ Table of Contents
 * [ngx_rtmp_control_module](#control)
     * [rtmp_control](#rtmp_control)
 
-## Core
+## ngx_rtmp_module
 #### rtmp
 syntax: `rtmp { ... }`  
 context: root  
-The block which holds all RTMP settings
+RTMP 配置块.
 
+## Core
 #### server
 syntax: `server { ... }`  
 context: rtmp  
@@ -163,9 +164,9 @@ be a pattern.
 syntax: `timeout value`  
 context: rtmp, server  
 
-Socket timeout. This value is primarily used for writing. Most of time RTMP 
-module does not expect any activity on all sockets except for publisher socket. 
-If you want broken socket to get quickly disconnected use active tools like 
+Socket timeout. This value is primarily used for writing. Most of time RTMP
+module does not expect any activity on all sockets except for publisher socket.
+If you want broken socket to get quickly disconnected use active tools like
 keepalive or RTMP ping. Default is 1 minute.
 
     timeout 60s;
@@ -177,7 +178,7 @@ context: rtmp, server
 RTMP ping interval. Zero turns ping off. RTMP ping is a protocol feature for
 active connection check. A special packet is sent to remote peer and a reply
 is expected within a timeout specified with ping_timeout directive. If ping
-reply is not received within this time then connection is closed. Default 
+reply is not received within this time then connection is closed. Default
 value for ping is 1 minute. Default ping timeout is 30 seconds.
 
     ping 3m;
@@ -199,7 +200,7 @@ context: rtmp, server
 默认的逻辑通道个数为32，这个值在大多数情况下都可以满足需求。
 
     max_streams 32;
-        
+
 #### ack_window
 syntax: `ack_window value`  
 context: rtmp, server  
@@ -289,7 +290,7 @@ every stream published. When publishing stops the process
 is terminated. Full path to binary should be specified as the
 first argument. There are no assumptions about what this process should
 do. However this feature is useful with ffmpeg for stream
-transcoding. FFmpeg is supposed to connect to nginx-rtmp as a client 
+transcoding. FFmpeg is supposed to connect to nginx-rtmp as a client
 and output transcoded stream back to nginx-rtmp as publisher. Substitutions
 of form $var/${var} can be used within command line:
 * $name - stream name
@@ -315,7 +316,7 @@ By default nginx clears the environment which will usually make rtmp module run 
 located in standard directories like `/bin` and `/usr/bin`. To make this always work
 please keep the original `PATH` variable value with the following nginx directive.
 
-    env PATH; 
+    env PATH;
 
 The following ffmpeg call transcodes incoming stream to HLS-ready
 stream (H264/AAC). FFmpeg should be compiled with libx264 & libfaac support
@@ -471,7 +472,7 @@ Context: rtmp, server, application, recorder
 
 Specifies external command with arguments to be executed when
 recording is finished. Substitution of `exec_publish` are supported here
-as well as additional variables 
+as well as additional variables
 * `recorder` - recorder name
 * `path` - recorded file path (`/tmp/rec/mystream-1389499351.flv`)
 * `filename` - path with directory omitted (`mystream-1389499351.flv`)
@@ -551,7 +552,7 @@ Context: rtmp, server, application
 Syntax: `drop_idle_publisher timeout`  
 Context: rtmp, server, application  
 
-本指令设置了一个超时时间，当发布者与服务器的连接处于 publish 模式下，闲置的时间超过这个时间后，服务器会关闭该连接。该功能默认关闭。所谓闲置是指没有音视频数据传输，所谓publish 模式,当发布者发送完 `publish` 指令后即为 publish 模式。 
+本指令设置了一个超时时间，当发布者与服务器的连接处于 publish 模式下，闲置的时间超过这个时间后，服务器会关闭该连接。该功能默认关闭。所谓闲置是指没有音视频数据传输，所谓publish 模式,当发布者发送完 `publish` 指令后即为 publish 模式。
 
     drop_idle_publisher 10s;
 
@@ -633,7 +634,7 @@ The following directive
     record_suffix -%d-%b-%y-%T.flv;
 
 will produce files of the form `mystream-24-Apr-13-18:23:38.flv`.
-All supported `strftime` format options can be found on 
+All supported `strftime` format options can be found on
 [strftime man page](http://pubs.opengroup.org/onlinepubs/009695399/functions/strftime.html).
 
 #### record_unique
@@ -695,7 +696,7 @@ Sets maximum number of video frames per recorded file.
 #### record_interval
 syntax: `record_interval time`  
 context: rtmp, server, application, recorder
-  
+
 Restart recording after this number of (milli)seconds.
 Off by default. Zero means no delay between recordings. If
 record_unique is off then all record fragments are written to the
@@ -709,9 +710,9 @@ differ (given record_interval is longer than 1 second).
 #### recorder
 syntax: `recorder name {...}`  
 context: application
-  
+
 Create recorder block. Multiple recorders can be created withing
-single application. All the above mentioned recording-related 
+single application. All the above mentioned recording-related
 directives can be specified in `recorder{}` block. All settings
 are inherited from higher levels.
 
@@ -737,9 +738,9 @@ are inherited from higher levels.
 #### record_notify
 syntax: `record_notify on|off`  
 context: rtmp, server, application, recorder  
-  
+
 Toggles sending NetStream.Record.Start and NetStream.Record.Stop
-status messages (onStatus) to publisher when specific recorder 
+status messages (onStatus) to publisher when specific recorder
 starts or stops recording file. Status description field holds
 recorder name (empty for default recorder). Off by default.
 
@@ -815,7 +816,7 @@ Context: rtmp, server, application
 Sets location where remote VOD files copied from `play_temp_path`
 directory after they are completely downloaded. Empty value
 disables the feature. By default it's empty. The feature can be used
-for caching remote files locally. 
+for caching remote files locally.
 
 This path should be on the same device as `play_temp_path`.
 
@@ -914,7 +915,7 @@ passed to caller:
 * tcUrl - tcUrl
 * pageUrl - client page url
 
-In addition to the above mentioned items all arguments passed explicitly to 
+In addition to the above mentioned items all arguments passed explicitly to
 connect command are also sent with the callback. You should distinguish
 connect arguments from play/publish arguments. Players usually have a special
 way of setting connection string separate from play/publish stream name.
@@ -948,11 +949,11 @@ Context: rtmp, server, application
 
 Sets HTTP play callback. Each time a clients issues play command
 an HTTP request is issued asynchronously and command processing is
-suspended until it returns result code. HTTP result code is then 
+suspended until it returns result code. HTTP result code is then
 analyzed.
 
 * HTTP 2xx code continues RTMP session
-* HTTP 3xx redirects RTMP to another stream whose name is taken from 
+* HTTP 3xx redirects RTMP to another stream whose name is taken from
 `Location` HTTP response header. If new stream name is started with `rtmp://`
 then remote relay is created instead. Relays require that IP address is
 specified instead of domain name and only work with nginx versions
@@ -1002,7 +1003,7 @@ passed to caller:
 * pageUrl - client page url
 * name - stream name
 
-In addition to the above mentioned items all arguments passed explicitly to 
+In addition to the above mentioned items all arguments passed explicitly to
 play command are also sent with the callback. For example if stream is
 accessed with the url `rtmp://localhost/app/movie?a=100&b=face&foo=bar` then
 `a`, `b` & `foo` are also sent with callback.
@@ -1039,7 +1040,7 @@ Same behavior as `on_done` but only for publish end event.
 #### on_record_done
 syntax: `on_record_done url`  
 context: rtmp, server, application, recorder  
-  
+
 Set record_done callback. In addition to common HTTP callback
 variables it receives the following values
 * recorder - recorder name in config or empty string for inline recorder
@@ -1052,16 +1053,16 @@ Example
 #### on_update
 syntax: `on_update url`  
 context: rtmp, server, application  
-  
-Set update callback. This callback is called with period of 
+
+Set update callback. This callback is called with period of
 `notify_update_timeout`. If a request returns HTTP result other
 than 2xx connection is terminated. This can be used to synchronize
-expired sessions. Two additional arguments `time` and `timestamp` 
+expired sessions. Two additional arguments `time` and `timestamp`
 are passed to this handler:
 * `time` is the number of seconds since play/publish call
 * `timestamp` is RTMP timestamp of the last audio/video packet sent to the client
 
-You can use `timestamp` argument to individually limit playback duration 
+You can use `timestamp` argument to individually limit playback duration
 for each user.
 
     on_update http://example.com/update;
@@ -1102,7 +1103,7 @@ Default is off.
 syntax: `notify_method get|post`  
 context: rtmp, server, application, recorder  
 
-Sets HTTP method for notifications. Default is POST with 
+Sets HTTP method for notifications. Default is POST with
 `application/x-www-form-urlencoded` content type. In certain cases
 GET is preferable, for example if you plan to handle the call
 in `http{}` section of nginx. In this case you can use `arg_*` variables
@@ -1209,7 +1210,7 @@ Context: rtmp, server, application
 Sets base url for HLS playlist items. When empty those
 items have no prefix and assumed to be at the same location
 as parent playlist or one level lower when `hls_nested` is
-used. This feature applies both to master (variant) and slave 
+used. This feature applies both to master (variant) and slave
 HLS playlists. It can let you download the playlist and play it
 locally since it contains full references to child playlists or
 fragments. Empty by default.
@@ -1280,7 +1281,7 @@ parameters.
     rtmp {
         server {
             listen 1935;
-        
+
             application src {
                 live on;
 
@@ -1309,9 +1310,9 @@ Syntax: `hls_type live|event`
 Context: rtmp, server, application  
 
 Sets HLS playlist type specified in `X-PLAYLIST-TYPE` playlist directive.
-Live HLS stream is usually played from the current live position which is 
-several fragments to the end of playlist. Event HLS stream is always played 
-from the start of playlist. When in `event` mode make sure playlist length 
+Live HLS stream is usually played from the current live position which is
+several fragments to the end of playlist. Event HLS stream is always played
+from the start of playlist. When in `event` mode make sure playlist length
 is enough for the whole event. Default is `live`;
 
     hls_type event;
@@ -1405,7 +1406,7 @@ Syntax: `hls_fragments_per_key value`
 Context: rtmp, server, application  
 
 Sets the number of HLS fragments encrypted with the same key.
-Zero means only one key is created at the publish start 
+Zero means only one key is created at the publish start
 and all fragments within the session are encrypted with this key.
 Default is zero.
 
@@ -1525,7 +1526,7 @@ formats. Several variables are supported within log format:
 
 Default log format has the name `combined`. Here's the definition of this format
 
-    $remote_addr [$time_local] $command "$app" "$name" "$args" - 
+    $remote_addr [$time_local] $command "$app" "$name" "$args" -
     $bytes_received $bytes_sent "$pageurl" "$flashver" ($session_readable_time)
 
 ## Limits
@@ -1617,7 +1618,7 @@ Control module is NGINX HTTP module and should be located within http{} block.
 Syntax: `rtmp_control all`  
 Context: http, server, location  
 
-Sets RTMP control handler to the current HTTP location. 
+Sets RTMP control handler to the current HTTP location.
 
     http {
         server {
