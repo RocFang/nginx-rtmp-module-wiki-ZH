@@ -2,21 +2,24 @@ Table of Contents
 =================
 * [ngx_rtmp_module](#ngx_rtmp_module)
     * [rtmp](#rtmp)
-* [ngx_rtmp_core_module](#core)
+* [ngx_rtmp_core_module](#ngx_rtmp_core_module)
     * [server](#server)
     * [listen](#listen)
     * [application](#application)
+    * [so_keepalive](#so_keepalive)
     * [timeout](#timeout)
     * [ping](#ping)
     * [ping_timeout](#ping_timeout)
     * [max_streams](#max_streams)
     * [ack_window](#ack_window)
     * [chunk_size](#chunk_size)
-    * [max_queue](#max_queue)
     * [max_message](#max_message)
-    * [buflen](#buflen)
     * [out_queue](#out_queue)
     * [out_cork](#out_cork)
+    * [busy](#busy)
+    * [play_time_fix](#play_time_fix)
+    * [publish_time_fix][#publish_time_fix]
+    * [buflen](#buflen)
 * [ngx_rtmp_access_module](#access)
     * [allow](#allow)
     * [deny](#deny)
@@ -126,11 +129,11 @@ syntax: `rtmp { ... }`
 context: root  
 RTMP 配置块.
 
-## Core
+## ngx_rtmp_core_module
 #### server
 syntax: `server { ... }`  
 context: rtmp  
-Declares RTMP server instance
+作用:配置一个rtmp server 块.
 
     rtmp {
       server {
@@ -141,7 +144,7 @@ Declares RTMP server instance
 syntax: `listen (addr[:port]|port|unix:path) [bind]  [ipv6only=on|off] [so_keepalive=on|off|keepidle:keepintvl:keepcnt|proxy_protocol]`  
 context: server  
 
-Adds listening socket to NGINX for accepting RTMP connections
+添加一个监听套接字来接收客户端连接.
 
     server {
         listen 1935;
@@ -151,8 +154,8 @@ Adds listening socket to NGINX for accepting RTMP connections
 syntax: `application name { ... }`  
 context: server  
 
-Creates RTMP application. Unlike http location application name cannot
-be a pattern.
+创建一个 RTMP 的 application, 与 http 配置中的 location 指令不同，
+application只能是精确的字符串。
 
     server {
         listen 1935;
@@ -160,14 +163,17 @@ be a pattern.
         }
     }
 
+### so_keepalive
+
+该指令已废弃，改为在 listen 中设置 keepalive.
+
 #### timeout
 syntax: `timeout value`  
 context: rtmp, server  
 
-Socket timeout. This value is primarily used for writing. Most of time RTMP
-module does not expect any activity on all sockets except for publisher socket.
-If you want broken socket to get quickly disconnected use active tools like
-keepalive or RTMP ping. Default is 1 minute.
+timeout 设置了 socket 的超时时间，这个超时主要用在写操作中。多数时候， RTMP 模块只会
+期待在发布者的连接上的写事件。如果你想快速断开连接，可以使用 keepalive 或者 RTMP ping
+消息.该配置默认为1分钟.
 
     timeout 60s;
 
@@ -175,11 +181,15 @@ keepalive or RTMP ping. Default is 1 minute.
 syntax: `ping value`  
 context: rtmp, server  
 
-RTMP ping interval. Zero turns ping off. RTMP ping is a protocol feature for
-active connection check. A special packet is sent to remote peer and a reply
-is expected within a timeout specified with ping_timeout directive. If ping
-reply is not received within this time then connection is closed. Default
-value for ping is 1 minute. Default ping timeout is 30 seconds.
+RTMP 服务器会向客户端定期发送 ping 请求，来检查客户端是否可用。如果在一个时间段内，
+服务器收到了客户端的ping响应，则认为客户端是可用的，否则认为客户端不可用。这个时间段
+也是可配置的，由ping_timeout配置，默认为30秒。
+
+在 RTMP 协议中，ping请求是一个用户控制消息，即消息类型为4的消息，用户控制消息的消息
+负载中的event类型决定了是哪一种用户控制消息，ping消息对应的event类型标识位为6.
+
+该配置配置了 RTMP 向客户端发送ping消息的时间间隔，默认为60秒，如果设置为0，则不向客户端
+发送ping请求。
 
     ping 3m;
     ping_timeout 30s;
@@ -188,7 +198,7 @@ value for ping is 1 minute. Default ping timeout is 30 seconds.
 syntax: `ping_timeout value`  
 context: rtmp, server  
 
-See ping description above.
+用法见ping指令。
 
 #### max_streams
 syntax: `max_streams value`  
@@ -196,8 +206,9 @@ context: rtmp, server
 
 指令所属模块: ngx_rtmp_core_module
 
-指令作用: 设置 RTMP chunk 流（注意与 message 流不同)的最大个数. 多个chunk流会整合到一个单一的数据流里.一个 RTMP chunk 流是一个逻辑通道，不同的 chunk 流用来传输不同类型的命令、音视频数据等。
-默认的逻辑通道个数为32，这个值在大多数情况下都可以满足需求。
+指令作用: 设置 RTMP chunk 流（注意与 message 流不同)的最大个数. 多个chunk流会整合到
+一个单一的数据流里.一个 RTMP chunk 流是一个逻辑通道，不同的 chunk 流用来传输不同类型
+的命令、音视频数据等。默认的逻辑通道个数为32，这个值在大多数情况下都可以满足需求。
 
     max_streams 32;
 
@@ -219,8 +230,6 @@ Maximum chunk size for stream multiplexing. Default is 4096. The bigger
 this value the lower CPU overhead. This value cannot be less than 128.
 
     chunk_size 4096;
-
-#### max_queue
 
 #### max_message
 syntax: `max_message value`  
