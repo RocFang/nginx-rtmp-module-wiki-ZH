@@ -18,7 +18,7 @@ Table of Contents
     * [out_cork](#out_cork)
     * [busy](#busy)
     * [play_time_fix](#play_time_fix)
-    * [publish_time_fix][#publish_time_fix]
+    * [publish_time_fix](#publish_time_fix)
     * [buflen](#buflen)
 * [ngx_rtmp_access_module](#access)
     * [allow](#allow)
