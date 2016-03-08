@@ -216,9 +216,10 @@ context: rtmp, server
 syntax: `ack_window value`  
 context: rtmp, server  
 
-Sets RTMP acknowledge window size. It's the number of bytes received after
-which peer should send acknowledge packet to remote side. Default value is
-5000000.
+RTMP 协议中有一种协议控制消息为Window Acknowledgement Size，其消息类型为5.
+客户端或服务端发送本消息来通知对方发送确认（致谢）消息的窗口大小。例如，服
+务端希望每当发送的字节数等于窗口大小时从客户端收到确认（致谢）。服务端在成
+功处理了客户端的连接请求后向客户端更新窗口大小。默认为5000000。
 
     ack_window 5000000;
 
@@ -226,8 +227,8 @@ which peer should send acknowledge packet to remote side. Default value is
 syntax: `chunk_size value`  
 context: rtmp, server  
 
-Maximum chunk size for stream multiplexing. Default is 4096. The bigger
-this value the lower CPU overhead. This value cannot be less than 128.
+改配置设置了最大的chunk size.默认为4096字节。该值越大，则cpu的负载越低。RTMP
+协议规定，该值不能小于128。
 
     chunk_size 4096;
 
@@ -237,9 +238,10 @@ context: rtmp, server
 
 指令所属模块: ngx_rtmp_core_module
 
-指令作用：设置可接收的单个 message 大小的最大值。所有的输入数据会被分割为多个 message(在底层会被进而分割为多个 chunks).
-一个不完整的 message 会保留在内存中等待接收完整。理论上一个输入的 message 可以非常大，这会对服务器的稳定性造成影响。默认值是
-1M，在大多数情况下是够用的。
+指令作用：设置可接收的单个 message 大小的最大值。所有的输入数据会被分割为多个
+message(在底层会被进而分割为多个 chunks).一个不完整的 message 会保留在内存中
+等待接收完整。理论上一个输入的 message 可以非常大，这会对服务器的稳定性造成影响。
+默认值是1M，在大多数情况下是够用的。
 
     max_message 1M;
 
