@@ -256,7 +256,7 @@ context: rtmp, server
 
 默认值为out_queue的八分之一，所以在out_queue采用默认设置即256时，out_cork为32.
 
-    out_queue 1K;
+    out_cork 1K;
 
 ## Access
 
