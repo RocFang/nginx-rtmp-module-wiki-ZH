@@ -243,6 +243,12 @@ before playing and resets this setting. Default is `1000 ms`.
     buflen 5s;
 
 #### out_queue
+syntax: `out_queue value`  
+context: rtmp, server  
+
+默认值为256.
+
+    out_queue 1K;
 
 #### out_cork
 
