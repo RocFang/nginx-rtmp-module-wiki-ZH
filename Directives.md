@@ -230,6 +230,12 @@ context: rtmp, server
 改配置设置了最大的chunk size.默认为4096字节。该值越大，则cpu的负载越低。RTMP
 协议规定，该值不能小于128。
 
+注意，不要将这个chunk_size与客户端发过来的chunk size搞混淆了。这里的chunk_size是
+指，nginx向客户端发送set chunk size消息，告知自己的chunk size.这个chunk size需要
+在这里配置，默认为4096.
+
+而客户端发送过来的chunk,其chunk size由nginx解析客户端的消息得到。默认为128.
+
     chunk_size 4096;
 
 #### max_message
@@ -538,6 +544,8 @@ Syntax: `wait_key on|off`
 Context: rtmp, server, application  
 
 当 `wait_key` 开启后，使得订阅者接收到的视频数据都以一个关键帧开始。该功能默认关闭。
+*注意*:虽然官方文档里说`wait_key`功能默认关闭，但实际上，在代码里该功能是默认打开的。
+算是一个 bug.
 
     wait_key on;
 
@@ -545,8 +553,9 @@ Context: rtmp, server, application
 Syntax: `wait_video on|off`  
 Context: rtmp, server, application  
 
-如果 `wait_video` 开关打开之后，在第一个视频帧发送之前，不会向订阅者发送音频帧。默认关闭。可以和 `wait_key` 指令配合使用，使得订阅者接收的音视频数据以一个视频关键帧开始。但这种做法通常会增加连接延时，这个问题可以通过在编码侧调整视频关键帧间隙大小来解决。
-
+如果 `wait_video` 开关打开之后，在第一个视频帧发送之前，不会向订阅者发送音频帧。
+默认关闭。可以和 `wait_key` 指令配合使用，使得订阅者接收的音视频数据以一个视频关键帧开
+始。但这种做法通常会增加连接延时，这个问题可以通过在编码侧调整视频关键帧间隙大小来解决。
 新版本的 IE 在回放时，需要开启此功能。
 
     wait_video on;
@@ -555,7 +564,8 @@ Context: rtmp, server, application
 Syntax: `publish_notify on|off`  
 Context: rtmp, server, application  
 
-当 `publish_notify` 开关打开时，会向订阅者发送 `NetStream.Play.PublishNotify` 和 `NetStream.Play.UnpublishNotify` 状态。本开关默认关闭。
+当 `publish_notify` 开关打开时，会向订阅者发送 `NetStream.Play.PublishNotify`
+和 `NetStream.Play.UnpublishNotify` 状态。本开关默认关闭。
 
     publish_notify on;
 
@@ -563,7 +573,9 @@ Context: rtmp, server, application
 Syntax: `drop_idle_publisher timeout`  
 Context: rtmp, server, application  
 
-本指令设置了一个超时时间，当发布者与服务器的连接处于 publish 模式下，闲置的时间超过这个时间后，服务器会关闭该连接。该功能默认关闭。所谓闲置是指没有音视频数据传输，所谓publish 模式,当发布者发送完 `publish` 指令后即为 publish 模式。
+本指令设置了一个超时时间，当发布者与服务器的连接处于 publish 模式下，闲置的时间超过这
+个时间后，服务器会关闭该连接。该功能默认关闭。所谓闲置是指没有音视频数据传输，
+所谓publish 模式,当发布者发送完 `publish` 指令后即为 publish 模式。
 
     drop_idle_publisher 10s;
 
@@ -571,7 +583,9 @@ Context: rtmp, server, application
 Syntax: `sync timeout`  
 Context: rtmp, server, application  
 
-如果订阅者带宽不够，一些帧会被服务器丢弃，这将导致同步的问题，sync 指令针对该情况对音视频流进行同步操作。如果时间戳的差异超过了 sync 指令配置的值，服务器会向订阅者发送一个绝对帧来解决该问题。该指令配置的默认值为 300ms.
+如果订阅者带宽不够，一些帧会被服务器丢弃，这将导致同步的问题，sync 指令针对该情况对
+音视频流进行同步操作。如果时间戳的差异超过了 sync 指令配置的值，服务器会向订阅者发送
+一个绝对帧来解决该问题。该指令配置的默认值为 300ms.
 
     sync 10ms;
 
