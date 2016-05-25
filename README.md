@@ -35,45 +35,40 @@ arut起先在wordpress.com上面做开发记录，后来迁移到了blogspot.com
 ### Google 讨论组
 
   * 英文: https://groups.google.com/group/nginx-rtmp
-
   * 俄文: https://groups.google.com/group/nginx-rtmp-ru
 
 ### 特性
 
-* RTMP/HLS/MPEG-DASH live streaming
+* 支持RTMP/HLS/MPEG-DASH直播
 
-* RTMP Video on demand FLV/MP4,
-  playing from local filesystem or HTTP
+* 支持基于RTMP协议的FLV/MP4点播,既支持本地文件点播，也支持通过http从远程拉取文件做点播
 
-* Stream relay support for distributed
-  streaming: push & pull models
+* 提供基于relay的分布式支持，主要有两种模式：push和pull
 
-* Recording streams in multiple FLVs
+* 支持将直播流录制为flv文件落地到磁盘
 
-* H264/AAC support
+* 支持的编码格式是H264/AAC
 
-* Online transcoding with FFmpeg
+* 支持使用FFmepg做在线转码
 
-* HTTP callbacks (publish/play/record/update etc)
+* 提供了HTTP回调支持(publish/play/record/update等)
 
-* Running external programs on certain events (exec)
+* 支持通过事件触发来运行外部程序(exec模块)
 
-* HTTP control module for recording audio/video and dropping clients
+* 支持通过HTTP请求来控制录制、断开客户端的动作
 
-* Advanced buffering techniques
-  to keep memory allocations at a minimum
-  level for faster streaming and low
-  memory footprint
+* 通过精心设计的buffer,使得本系统有着极高的运行效率和极小的内存占用
 
-* Proved to work with Wirecast, FMS, Wowza,
-  JWPlayer, FlowPlayer, StrobeMediaPlayback,
-  ffmpeg, avconv, rtmpdump, flvstreamer
-  and many more
+* 经过测试的客户端包括Wirecast, FMS, Wowza,JWPlayer, FlowPlayer, StrobeMediaPlayback,
+  ffmpeg, avconv, rtmpdump, flvstreamer等等
 
-* Statistics in XML/XSL in machine- & human-
-  readable form
+* 支持通过http请求获取系统内实时的统计数据，统计数据用xml/xsl的形式展现出来
 
-* Linux/FreeBSD/MacOS/Windows
+* 兼容Linux/FreeBSD/MacOS/Windows
+
+注意：上面提到的控制和统计功能，分别是用两个http模块来实现的，在多进程的时候这又是
+一个雷区:一个http请求只能落在一个worker进程上面。所以，再次强调，如果不进行二次开发，
+请不要在多进程时使用这两个功能。
 
 ### Build
 
