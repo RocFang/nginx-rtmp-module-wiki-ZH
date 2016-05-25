@@ -17,7 +17,15 @@
 
 ### 项目博客
 
-  http://nginx-rtmp.blogspot.com
+arut一共维护了两份开发日志：
+* http://nginx-rtmp.blogspot.com
+* https://rarut.wordpress.com
+
+arut起先在wordpress.com上面做开发记录，后来迁移到了blogspot.com上，所以，如果不是对
+评论特别感兴趣的话，阅读第一个地址就够了。
+
+这里必须要强调一下，arut的这些开发日志有很高的价值，通过这些文章，我们可以了解很多代码
+背后的东西。强烈建议精读几遍。
 
 ### 配置指令说明
 
