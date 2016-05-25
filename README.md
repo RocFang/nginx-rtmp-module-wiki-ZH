@@ -70,45 +70,39 @@ arut起先在wordpress.com上面做开发记录，后来迁移到了blogspot.com
 一个雷区:一个http请求只能落在一个worker进程上面。所以，再次强调，如果不进行二次开发，
 请不要在多进程时使用这两个功能。
 
-### Build
+### 编译
 
-cd to NGINX source directory & run this:
+跟所有的nginx第三方模块一样，nginx-rtmp通过如下的方式进行编译:在nginx源码目录下执行
 
     ./configure --add-module=/path/to/nginx-rtmp-module
     make
     make install
 
-Several versions of nginx (1.3.14 - 1.5.0) require http_ssl_module to be
-added as well:
-
-    ./configure --add-module=/path/to/nginx-rtmp-module --with-http_ssl_module
-
-For building debug version of nginx add `--with-debug`
+为了支持debug模式，在configure的时候带上 `--with-debug`参数
 
     ./configure --add-module=/path/to-nginx/rtmp-module --with-debug
 
-[Read more about debug log](https://github.com/arut/nginx-rtmp-module/wiki/Debug-log)
+[更多关于debug日志的内容](https://github.com/arut/nginx-rtmp-module/wiki/Debug-log)
 
-### RTMP URL format
+### RTMP url格式
 
     rtmp://rtmp.example.com/app[/name]
 
-app -  should match one of application {}
-         blocks in config
+app -  匹配配置文件中的某个application{}块
 
-name - interpreted by each application
-         can be empty
+name - 由各程序自行处理和解释，可以为空。一般用它来做流名。
 
 
-### Multi-worker live streaming
+### 多进程支持
 
-Module supports multi-worker live
-streaming through automatic stream pushing
-to nginx workers. This option is toggled with
-rtmp_auto_push directive.
+nginx-rtmp通过auto_push功能来实现对多进程的支持。大概方法是，每一个被publish到的worker
+进程，通过unix域套接字将其接收到的流主动publish到其它各个worker进程。这个功能通过
+rtmp_auto_push指令来开启。详见ngx_rtmp_auto_push_module模块。
 
+注意：已经多次强调，nginx-rtmp的多进程支持并不完全，除非你已经非常熟悉源码并能做相应
+的修改，否则永远不要在生产环境中开启多进程支持。
 
-### Example nginx.conf
+### 配置文件示例-单进程版
 
     rtmp {
 
@@ -322,9 +316,10 @@ rtmp_auto_push directive.
     }
 
 
-### Multi-worker streaming example
+### 配置文件示例-多进程版
 
     rtmp_auto_push on;
+    worker_processes 4;
 
     rtmp {
         server {
