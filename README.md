@@ -82,8 +82,6 @@ arut起先在wordpress.com上面做开发记录，后来迁移到了blogspot.com
 
     ./configure --add-module=/path/to-nginx/rtmp-module --with-debug
 
-[更多关于debug日志的内容](https://github.com/arut/nginx-rtmp-module/wiki/Debug-log)
-
 ### RTMP url格式
 
     rtmp://rtmp.example.com/app[/name]

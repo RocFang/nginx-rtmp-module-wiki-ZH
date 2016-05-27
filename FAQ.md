@@ -6,7 +6,7 @@ Add this directive to fix the problem
 
 ####I use `pull` directive to get stream from remote location. That works for RTMP clients but does not work for HLS.
 
-Currently HLS clients do not trigger any events. You cannot pull or exec when HLS client connects to server. However you can use static directives `exec_static`, `pull ... static` to pull the stream always. 
+Currently HLS clients do not trigger any events. You cannot pull or exec when HLS client connects to server. However you can use static directives `exec_static`, `pull ... static` to pull the stream always.
 
 ####Seek does not work with flv files recorded by the module.
 
